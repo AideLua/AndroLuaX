@@ -1,6 +1,6 @@
 # AndroLuaX
-![License](https://img.shields.io/gitlab/license/Jesse205/androluax?label=License&style=flat-square)
-[![发行版](https://img.shields.io/gitlab/v/release/Jesse205/androluax?label=%E5%8F%91%E5%B8%83&logo=gitlab))](https://gitlab.com/Jesse205/androluax/-/releases)
+![License](https://img.shields.io/gitlab/license/Jesse205/androluax?label=License)
+[![发行版](https://img.shields.io/gitlab/v/release/Jesse205/androluax?label=%E5%8F%91%E5%B8%83&logo=gitlab)](https://gitlab.com/Jesse205/androluax/-/releases)
 
 ## 简介
 AndroLuaX是一款反编译 AndroLua+，为 AndroLua+ 添加 AndroidX 的 AndroLua+ 衍生产品

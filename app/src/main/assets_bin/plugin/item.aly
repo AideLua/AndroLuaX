@@ -1,0 +1,28 @@
+{
+  LinearLayout;
+  layout_width="fill";
+  gravity="left|center";
+  {
+    ImageView;
+    id="icon";
+    layout_margin="16dp";
+    layout_width="40dp";
+    layout_height="40dp";
+  };
+  {
+    LinearLayout;
+    layout_width="fill";
+    orientation="vertical",
+    gravity="left|center";
+    {
+      TextView;
+      id="title";
+      textSize="18sp";
+    };
+    {
+      TextView;
+      textSize="14sp";
+      id="description";
+    };
+  };
+};

@@ -1,0 +1,15 @@
+{
+  LinearLayout;
+  orientation="vertical",
+  gravity="center";
+  layout_width="fill",
+  layout_height="fill",
+  {
+    ProgressBar;
+  };
+  {
+    TextView;
+    textSize="18sp";
+    text="正在分析。。。";
+  };
+};

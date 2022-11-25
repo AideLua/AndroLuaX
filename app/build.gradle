@@ -1,0 +1,46 @@
+apply plugin: 'com.android.application'
+
+android {
+    compileSdkVersion 29
+    buildToolsVersion "29.0.3"
+
+    defaultConfig {
+        applicationId "com.Jesse205.androlua.androidX1_0_0.material1_5"
+        minSdkVersion 21
+        targetSdkVersion 29
+        versionCode 1599
+        versionName "1.5(5.0.18)"
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+            ndk {abiFilters 'armeabi-v7a', 'x86', 'arm64-v8a'}
+       }
+        debug {
+            minifyEnabled false
+            ndk {abiFilters 'armeabi-v7a', 'x86', 'arm64-v8a'}
+        }
+    }
+    sourceSets {
+        main {
+            //jniLibs.srcDirs = ['libs']
+        
+        }
+
+    }
+    lintOptions {
+          abortOnError false
+          checkReleaseBuilds false
+    }
+    
+}
+
+dependencies {
+    implementation fileTree(dir: "libs", include: ["*.jar"])
+
+    api project(':androlua')
+    api 'androidx.appcompat:appcompat:1.0.0'
+    api 'com.google.android.material:material:1.0.0'
+}

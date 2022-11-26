@@ -1,34 +1,34 @@
 apply plugin: 'com.android.application'
 
 android {
-    compileSdkVersion 29
-    buildToolsVersion "29.0.3"
+    compileSdkVersion 32
+    buildToolsVersion "32.0.0"
 
     defaultConfig {
-        applicationId "com.Jesse205.androlua.androidX1_0_0.material1_5"
+        applicationId "com.jesse205.androlua.androidX.material3"
         minSdkVersion 21
         targetSdkVersion 29
-        versionCode 1599
-        versionName "1.5(5.0.18)"
+        versionCode 2099
+        versionName "2.0(5.0.18)(Material3)"
     }
 
     buildTypes {
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+            shrinkResources false
             ndk {abiFilters 'armeabi-v7a', 'x86', 'arm64-v8a'}
        }
         debug {
             minifyEnabled false
+            shrinkResources false
             ndk {abiFilters 'armeabi-v7a', 'x86', 'arm64-v8a'}
         }
     }
     sourceSets {
         main {
             //jniLibs.srcDirs = ['libs']
-        
         }
-
     }
     lintOptions {
           abortOnError false
@@ -41,6 +41,6 @@ dependencies {
     implementation fileTree(dir: "libs", include: ["*.jar"])
 
     api project(':androlua')
-    api 'androidx.appcompat:appcompat:1.0.0'
-    api 'com.google.android.material:material:1.0.0'
+    api 'androidx.appcompat:appcompat:1.4.0'
+    api 'com.google.android.material:material:1.7.0-alpha01'
 }

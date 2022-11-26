@@ -11,6 +11,7 @@ import "android.net.*"
 import "android.content.*"
 import "android.graphics.drawable.*"
 import "androidx.appcompat.app.AppCompatDialog"
+import "com.google.android.material.dialog.MaterialAlertDialogBuilder"
 import "bin"
 import "autotheme"
 
@@ -20,9 +21,14 @@ activity.setTitle('AndroLua+')
 activity.setTheme(autotheme())
 
 function onVersionChanged(n, o)
-  local dlg = AlertDialogBuilder(activity)
+  
+  local dlg = MaterialAlertDialogBuilder(activity)
   local title = "更新" .. o .. ">" .. n
   local msg = [[
+    2.0(5.0.18)(Material3)
+    更新AndroidX
+    添加Material3（感谢@ikimashwoo）
+    
     1.5(5.0.18)
     修复 androlua://packagename/ 无法调用
     
@@ -773,15 +779,18 @@ m = {
   { MenuItem,
     title = "运行",
     id = "play",
-    icon = "ic_play", },
+    icon = "ic_play",
+    singleColor=true },
   { MenuItem,
     title = "撤销",
     id = "undo",
-    icon = "ic_undo", },
+    icon = "ic_undo",
+    singleColor=true },
   { MenuItem,
     title = "重做",
     id = "redo",
-    icon = "ic_redo", },
+    icon = "ic_redo",
+    singleColor=true },
   { MenuItem,
     title = "打开",
     id = "file_open", },
@@ -1862,7 +1871,7 @@ function create_create_dlg()
   if create_dlg then
     return
   end
-  create_dlg = AlertDialogBuilder(activity)
+  create_dlg = MaterialAlertDialogBuilder(activity)
   create_dlg.setMessage(luadir)
   create_dlg.setTitle("新建")
   create_e = EditText(activity)
@@ -1870,17 +1879,19 @@ function create_create_dlg()
   create_dlg.setPositiveButton(".lua", { onClick = create_lua })
   create_dlg.setNegativeButton("dir", { onClick = create_dir })
   create_dlg.setNeutralButton(".aly", { onClick = create_aly })
+  create_dlg=create_dlg.create()
 end
 
 function create_project_dlg()
   if project_dlg then
     return
   end
-  project_dlg = AlertDialogBuilder(activity)
+  project_dlg = MaterialAlertDialogBuilder(activity)
   project_dlg.setTitle("新建工程")
   project_dlg.setView(loadlayout(layout.project))
   project_dlg.setPositiveButton("确定", { onClick = create_project })
   project_dlg.setNegativeButton("取消", nil)
+  project_dlg=project_dlg.create()
 end
 
 function create_build_dlg()
@@ -1892,6 +1903,7 @@ function create_build_dlg()
   build_dlg.setView(loadlayout(layout.build))
   build_dlg.setPositiveButton("确定", { onClick = buildfile })
   build_dlg.setNegativeButton("取消", nil)
+  
 end
 
 function create_bin_dlg()

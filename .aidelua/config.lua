@@ -1,8 +1,8 @@
 tool={
   version="1.1",
 }
-appName="AndroLuaX 1.0.0"--应用名称
-packageName="com.Jesse205.androlua.androidX1_0_0.material1_5"--应用包名
+appName="AndroLuaX "--应用名称
+packageName="com.jesse205.androlua.androidX.material3"--应用包名
 include={"project:app","project:androlua"}--导入，第一个为主程序
 main="app"--老版本
 compileLua=false--编译Lua

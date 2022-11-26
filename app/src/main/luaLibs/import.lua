@@ -206,6 +206,7 @@ local function env_import(env)
     import("loadlayout", _env)
     import("loadbitmap", _env)
     import("loadmenu", _env)
+    _env.R=luajava.bindClass "com.jesse205.androlua.androidX.material3.R"
     return _env
 end
 

@@ -1,4 +1,5 @@
 require "import"
+import "androidx"
 import "android.app.*"
 import "android.os.*"
 import "java.io.*"
@@ -414,19 +415,25 @@ add_dlg.Title="添加"
 wdt_list=ListView(activity)
 
 ns={
-  "Widget","Check view","Adapter view","Advanced Widget","Layout","Advanced Layout",
+  "Widget (小部件)","Check view (检查视图)","Adapter view (适配器视图)",
+  "Advanced Widget (高级部件)","Layout (布局)","Advanced Layout (高级布局)",
+  "Material Design (质感设计)",
 }
 
 wds={
   {"Button","EditText","TextView",
     "ImageButton","ImageView"},
   {"CheckBox","RadioButton","ToggleButton","Switch"},
-  {"ListView","GridView","PageView","ExpandableListView","Spinner"},
+  {"ListView","GridView","PageView","ExpandableListView","Spinner","ViewPager","RecyclerView"},
   {"SeekBar","ProgressBar","RatingBar",
-    "DatePicker","TimePicker","NumberPicker"},
-  {"LinearLayout","AbsoluteLayout","FrameLayout","RelativeLayout"},
+    "DatePicker","TimePicker","NumberPicker","LuaEditor","LuaWebView"},
+  {"LinearLayout","AbsoluteLayout","FrameLayout","RelativeLayout","CoordinatorLayout"},
   {"CardView","RadioGroup","GridLayout",
-    "ScrollView","HorizontalScrollView"},
+    "ScrollView","HorizontalScrollView"},--不兼容的布局：SwipeRefreshLayout，SlidingPaneLayout，DrawerLayout
+  {"AppBarLayout","CollapsingToolbarLayout",
+    "BottomAppBar","BottomNavigationItemView","BottomNavigationView",
+    "MaterialButton","MaterialCardView","Chip","ChipGroup","CircularRevealFrameLayout",
+    "CircularRevealGridLayout","FloatingActionButton","NavigationView","TabLayout","TextInputEditText","TextInputLayout"},
 }
 
 

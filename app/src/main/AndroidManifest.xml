@@ -1,7 +1,7 @@
 <?xml version='1.0' encoding='utf-8'?>
 <manifest
     xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.Jesse205.androlua.androidX1_0_0.material1_5">
+    package="com.jesse205.androlua.androidX.material3">
 
     <!-- 读取通话状态和移动网络信息 -->
     <uses-permission android:name="android.permission.READ_PHONE_STATE"/>
@@ -164,10 +164,10 @@
         android:supportsPictureInPicture="true"
         android:allowBackup="true"
         android:icon="@drawable/icon"
-        android:label="AndroLuaX 1.0.0"
+        android:label="AndroLuaX"
         android:usesCleartextTraffic="true"
         android:requestLegacyExternalStorage="true"
-        android:theme="@style/AppTheme">
+        android:theme="@style/AppTheme.Material3">
 
         <uses-library
             android:name="org.apache.http.legacy"
@@ -187,7 +187,7 @@
 
         <activity
             android:configChanges="keyboardHidden|orientation|screenSize"
-            android:label="AndroLuaX 1.0.0"
+            android:label="AndroLuaX"
             android:launchMode="singleTask"
             android:windowSoftInputMode="adjustResize|stateHidden"
             android:name="com.androlua.Main">
@@ -225,7 +225,7 @@
         <activity
             android:configChanges="keyboardHidden|orientation|screenSize"
             android:windowSoftInputMode="adjustResize|stateHidden"
-            android:label="AndroLuaX 1.0.0"
+            android:label="AndroLuaX"
             android:name="com.androlua.LuaActivity">
             <intent-filter>
                 <action
@@ -272,12 +272,12 @@
             android:documentLaunchMode="intoExisting"
             android:windowSoftInputMode="adjustResize|stateHidden"
             android:excludeFromRecents="false"
-            android:label="AndroLuaX 1.0.0"
+            android:label="AndroLuaX"
             android:name="com.androlua.LuaActivityX">
         </activity>
 
         <activity
-            android:label="AndroLuaX 1.0.0"
+            android:label="AndroLuaX"
             android:windowSoftInputMode="adjustResize|stateHidden"
             android:name="com.androlua.Welcome"
             android:theme="@style/AppWelcome">
@@ -303,7 +303,7 @@
         <service
             android:enabled="true"
             android:exported="true"
-            android:label="AndroLuaX 1.0.0"
+            android:label="AndroLuaX"
             android:name="com.androlua.LuaAccessibilityService"
             android:permission="android.permission.BIND_ACCESSIBILITY_SERVICE">
 
@@ -324,19 +324,5 @@
             </intent-filter>
 
         </service>
-
-        <provider
-            android:authorities="com.Jesse205.androlua.androidX1_0_0.material1_5"
-            android:exported="false"
-            android:grantUriPermissions="true"
-            android:name="android.content.FileProvider">
-
-            <meta-data
-                android:name="android.support.FILE_PROVIDER_PATHS"
-                android:resource="@xml/androlua_filepaths"/>
-
-        </provider>
-
     </application>
-
 </manifest>

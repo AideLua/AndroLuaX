@@ -8,36 +8,45 @@ local new = luajava.new
 local bindClass = luajava.bindClass
 local LuaDrawable=luajava.bindClass "com.androlua.LuaDrawable"
 local loadbitmap=require "loadbitmap"
+local textColorPrimary
 
 local function loadmenu(menu,t,root,n)
-    root=root or _G
-    n=n or 0
-    for k,v in ipairs(t) do
-      local id=ids.id
-      ids.id=ids.id+1
-      if v[1]== MenuItem then
-        local item=menu.add(v.group or 0,id,v.order or 0,v.title)
-        if v.id then
-          rawset(root,v.id,item)
-          ids[v.id]=id
-        end
-        if k<=n then
-        item.setShowAsAction(MenuItem.SHOW_AS_ACTION_ALWAYS)
-        end
-        if v.icon then
-          item.setIcon(BitmapDrawable(loadbitmap(v.icon)))
-        end
-        if v.enabled==false then
-          item.setEnabled(v.enabled)
-        end
-        if v.visible==false then
-          item.setVisible(v.visible)
-        end
-      elseif v[1]== SubMenu then
-        local item=menu.addSubMenu(v.group or 0,id,v.order or 0,v.title)
-        loadmenu(item,v,root)
+  if not textColorPrimary then
+    local arry=activity.getSupportActionBar().getThemedContext().getTheme().obtainStyledAttributes({android.R.attr.textColorPrimary})
+    textColorPrimary=arry.getColorStateList(0)
+    arry.recycle()
+  end
+  root=root or _G
+  n=n or 0
+  for k,v in ipairs(t) do
+    local id=ids.id
+    ids.id=ids.id+1
+    if v[1]== MenuItem then
+      local item=menu.add(v.group or 0,id,v.order or 0,v.title)
+      if v.id then
+        rawset(root,v.id,item)
+        ids[v.id]=id
       end
+      if k<=n then
+        item.setShowAsAction(MenuItem.SHOW_AS_ACTION_ALWAYS)
+      end
+      if v.icon then
+        item.setIcon(BitmapDrawable(loadbitmap(v.icon)))
+      end
+      if v.enabled==false then
+        item.setEnabled(v.enabled)
+      end
+      if v.visible==false then
+        item.setVisible(v.visible)
+      end
+      if v.singleColor then
+        item.setIconTintList(textColorPrimary)
+      end
+     elseif v[1]== SubMenu then
+      local item=menu.addSubMenu(v.group or 0,id,v.order or 0,v.title)
+      loadmenu(item,v,root)
     end
   end
-  return loadmenu
+end
+return loadmenu
 

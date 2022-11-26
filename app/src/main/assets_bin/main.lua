@@ -21,11 +21,12 @@ activity.setTitle('AndroLua+')
 activity.setTheme(autotheme())
 
 function onVersionChanged(n, o)
-  
+
   local dlg = MaterialAlertDialogBuilder(activity)
   local title = "更新" .. o .. ">" .. n
   local msg = [[
     2.0(5.0.18)(Material3)
+    修复导入时报错
     更新AndroidX
     添加Material3（感谢@ikimashwoo）
     
@@ -1280,12 +1281,15 @@ end
 
 function imports(path,data)
   create_imports_dlg()
+  imports_path=path
   local mode
   imports_dlg.Message, mode = getalpinfo(path,data)
   if mode == "plugin" or path:match("^([^%._]+)_plugin") then
     imports_dlg.setTitle("导入插件")
+    imports_title="导入插件"
    elseif mode == "build" or path:match("^([^%._]+)_build") then
     imports_dlg.setTitle("打包安装")
+    imports_title="打包安装"
   end
   imports_dlg.show()
 end
@@ -1752,22 +1756,26 @@ function create_imports_dlg()
   if imports_dlg then
     return
   end
-  imports_dlg = AlertDialogBuilder(activity)
+  imports_dlg = MaterialAlertDialogBuilder(activity)
   imports_dlg.setTitle("导入")
+  imports_title="导入"
   imports_dlg.setPositiveButton("确定", {
     onClick = function()
-      local path = imports_dlg.Message:match("路径: (.+)$")
-      if imports_dlg.Title == "打包安装" then
+      --local path = imports_dlg.Message:match("路径: (.+)$")
+      local path = imports_path
+      local title = imports_title
+      if title == "打包安装" then
         importx(path, "build")
-        imports_dlg.setTitle("导入")
-       elseif imports_dlg.Title == "导入插件" then
+       elseif title == "导入插件" then
         importx(path, "plugin")
-        imports_dlg.setTitle("导入")
        else
         importx(path)
       end
+      imports_dlg.setTitle("导入")
+      imports_title="导入"
   end })
   imports_dlg.setNegativeButton("取消", nil)
+  imports_dlg=imports_dlg.create()
 end
 
 function create_delete_dlg()
@@ -1903,7 +1911,7 @@ function create_build_dlg()
   build_dlg.setView(loadlayout(layout.build))
   build_dlg.setPositiveButton("确定", { onClick = buildfile })
   build_dlg.setNegativeButton("取消", nil)
-  
+
 end
 
 function create_bin_dlg()

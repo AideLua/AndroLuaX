@@ -11,6 +11,8 @@ import "autotheme"
 activity.setTitle('工程')
 activity.setTheme(autotheme())
 activity.setContentView(loadlayout(layout))
+activity.getSupportActionBar().setDisplayHomeAsUpEnabled(true)
+
 local luadir,luapath=...
 local plugindir=activity.getLuaExtDir("project")
 
@@ -96,6 +98,12 @@ function onCreateOptionsMenu(menu)
   local item=menu.add("搜索")
   item.setShowAsAction(1)
   item.setActionView(edit)
+end
+function onOptionsItemSelected(item)
+  local id=item.getItemId()
+  if id==android.R.id.home then
+    activity.finish()
+  end
 end
 
 edit=EditText()

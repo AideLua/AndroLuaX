@@ -7,8 +7,9 @@ import "autotheme"
 
 activity.setTheme(autotheme())
 activity.setTitle("Lua参考手册")
+activity.getSupportActionBar().setDisplayHomeAsUpEnabled(true)
 
-items={"目录","返回",}
+items={"目录",--[["返回",]]}
 function onCreateOptionsMenu(menu)
   for k,v in ipairs(items) do
     m=menu.add(v)
@@ -17,7 +18,12 @@ function onCreateOptionsMenu(menu)
 end
 
 function onOptionsItemSelected(item)
-  onMenuItemSelected(item.getItemId(), item)
+  local id=item.getItemId()
+  if id==android.R.id.home then
+    activity.finish()
+   else
+    onMenuItemSelected(id, item)
+  end
 end
 
 function onMenuItemSelected(id,item)
@@ -27,11 +33,11 @@ func={}
 func["目录"]=function()
   doc_web.loadUrl("file://"..activity.getLuaDir().."/luadoc/contents.html#contents")
 end
-
+--[[
 func["返回"]=function()
   --luajava.clear(doc_web)
   activity.finish()
-end
+end]]
 
 doc_web=LuaWebView(activity)
 doc_web.loadUrl("file://"..activity.getLuaDir().."/luadoc/manual.html")

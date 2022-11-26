@@ -3,157 +3,144 @@
   layout_width="fill";
   {
     LinearLayout;
+    layout_width="fill";
     orientation="vertical";
     {
-      TextInputLayout;
-      hint="名称";
+      LinearLayout;
       layout_width="fill";
+      orientation="vertical";
       layout_marginLeft="16dp";
       layout_marginRight="16dp";
-      layout_marginTop="8dp";
       {
-        TextInputEditText;
+        TextInputLayout;
+        hint="名称";
         layout_width="fill";
-        layout_height="fill";
-        id="appname";
-        singleLine=true;
+        layout_marginTop="8dp";
+        {
+          TextInputEditText;
+          layout_width="fill";
+          layout_height="fill";
+          id="appname";
+          singleLine=true;
+        };
       };
-    };
-    {
-      TextInputLayout;
-      hint="版本";
-      layout_width="fill";
-      layout_marginLeft="16dp";
-      layout_marginRight="16dp";
-      layout_marginTop="8dp";
       {
-        TextInputEditText;
+        TextInputLayout;
+        hint="版本";
         layout_width="fill";
-        layout_height="fill";
-        id="appver";
-        singleLine=true;
+        layout_marginTop="8dp";
+        {
+          TextInputEditText;
+          layout_width="fill";
+          layout_height="fill";
+          id="appver";
+          singleLine=true;
+        };
       };
-    };
-    {
-      TextInputLayout;
-      hint="Code";
-      layout_width="fill";
-      layout_marginLeft="16dp";
-      layout_marginRight="16dp";
-      layout_marginTop="8dp";
       {
-        TextInputEditText;
+        TextInputLayout;
+        hint="Code";
         layout_width="fill";
-        layout_height="fill";
-        id="appcode";
-        singleLine=true;
+        layout_marginTop="8dp";
+        {
+          TextInputEditText;
+          layout_width="fill";
+          layout_height="fill";
+          id="appcode";
+          singleLine=true;
+        };
       };
-    };
 
-    {
-      TextInputLayout;
-      hint="SDK";
-      layout_width="fill";
-      layout_marginLeft="16dp";
-      layout_marginRight="16dp";
-      layout_marginTop="8dp";
       {
-        TextInputEditText;
+        TextInputLayout;
+        hint="SDK";
         layout_width="fill";
-        layout_height="fill";
-        id="appsdk";
-        singleLine=true;
+        layout_marginTop="8dp";
+        {
+          TextInputEditText;
+          layout_width="fill";
+          layout_height="fill";
+          id="appsdk";
+          singleLine=true;
+        };
       };
-    };
-    {
-      TextInputLayout;
-      hint="关联";
-      layout_width="fill";
-      layout_marginLeft="16dp";
-      layout_marginRight="16dp";
-      layout_marginTop="8dp";
       {
-        TextInputEditText;
+        TextInputLayout;
+        hint="关联";
         layout_width="fill";
-        layout_height="fill";
-        id="path_pattern";
-        singleLine=true;
+        layout_marginTop="8dp";
+        {
+          TextInputEditText;
+          layout_width="fill";
+          layout_height="fill";
+          id="path_pattern";
+          singleLine=true;
+        };
       };
-    };
-    {
-      TextInputLayout;
-      hint="包名";
-      layout_width="fill";
-      layout_marginLeft="16dp";
-      layout_marginRight="16dp";
-      layout_marginTop="8dp";
       {
-        TextInputEditText;
+        TextInputLayout;
+        hint="包名";
         layout_width="fill";
-        layout_height="fill";
-        id="packagename";
-        singleLine=true;
+        layout_marginTop="8dp";
+        {
+          TextInputEditText;
+          layout_width="fill";
+          layout_height="fill";
+          id="packagename";
+          singleLine=true;
+        };
       };
-    };
-    {
-      TextInputLayout;
-      hint="key";
-      layout_width="fill";
-      layout_marginLeft="16dp";
-      layout_marginRight="16dp";
-      layout_marginTop="8dp";
       {
-        TextInputEditText;
+        TextInputLayout;
+        hint="key";
         layout_width="fill";
-        layout_height="fill";
-        id="app_key";
-        singleLine=true;
+        layout_marginTop="8dp";
+        {
+          TextInputEditText;
+          layout_width="fill";
+          layout_height="fill";
+          id="app_key";
+          singleLine=true;
+        };
       };
-    };
-
-    {
-      TextInputLayout;
-      hint="渠道";
-      layout_width="fill";
-      layout_marginLeft="16dp";
-      layout_marginRight="16dp";
-      layout_marginTop="8dp";
       {
-        TextInputEditText;
+        TextInputLayout;
+        hint="渠道";
         layout_width="fill";
-        layout_height="fill";
-        id="app_channel";
-        singleLine=true;
+        layout_marginTop="8dp";
+        {
+          TextInputEditText;
+          layout_width="fill";
+          layout_height="fill";
+          id="app_channel";
+          singleLine=true;
+        };
       };
-    };
-    {
-      TextInputLayout;
-      hint="作者";
-      layout_width="fill";
-      layout_marginLeft="16dp";
-      layout_marginRight="16dp";
-      layout_marginTop="8dp";
       {
-        TextInputEditText;
+        TextInputLayout;
+        hint="作者";
         layout_width="fill";
-        layout_height="fill";
-        id="developer";
-        singleLine=true;
+        layout_marginTop="8dp";
+        {
+          TextInputEditText;
+          layout_width="fill";
+          layout_height="fill";
+          id="developer";
+          singleLine=true;
+        };
       };
-    };
-    {
-      TextInputLayout;
-      hint="描述";
-      layout_width="fill";
-      layout_marginLeft="16dp";
-      layout_marginRight="16dp";
-      layout_marginTop="8dp";
       {
-        TextInputEditText;
+        TextInputLayout;
+        hint="描述";
         layout_width="fill";
-        layout_height="fill";
-        id="description";
-        singleLine=true;
+        layout_marginTop="8dp";
+        {
+          TextInputEditText;
+          layout_width="fill";
+          layout_height="fill";
+          id="description";
+          singleLine=true;
+        };
       };
     };
     {
@@ -161,18 +148,18 @@
       orientation="horizontal";
       layout_width="fill";
       {
-        TextView;
+        MaterialTextView;
         text="主题";
         textSize="16sp";
         layout_marginLeft="16dp";
       };
       {
-        Spinner;
+        AppCompatSpinner;
         id="tlist";
       };
     };
     {
-      SwitchCompat;
+      SwitchMaterial;
       id="debugmode";
       text="调试";
       padding="16dp";
@@ -180,7 +167,7 @@
       textSize="16sp";
     };
     {
-      Button;
+      MaterialButton;
       text="更改权限";
       id="btn",
       layout_width="fill";

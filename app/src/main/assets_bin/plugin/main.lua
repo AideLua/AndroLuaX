@@ -11,6 +11,14 @@ import "autotheme"
 activity.setTitle('插件')
 activity.setTheme(autotheme())
 activity.setContentView(loadlayout(layout))
+activity.getSupportActionBar().setDisplayHomeAsUpEnabled(true)
+
+function onOptionsItemSelected(item)
+  local id=item.getItemId()
+  if id==android.R.id.home then
+    activity.finish()
+  end
+end
 local luadir,luapath=...
 local plugindir=activity.getLuaExtDir("plugin")
 

@@ -9,7 +9,9 @@ import "autotheme"
 
 help=[===[
 @关于@
-@AndroLua是基于LuaJava开发的安卓平台轻量级脚本编程语言工具，既具有Lua简洁优雅的特质，又支持绝大部分安卓API，可以使你在手机上快速编写小型应用。
+@本文档已整理成网页版： https://jesse205.github.io/AideLua/androluapro/ ，阅读更舒服（长按可复制）
+
+AndroLua是基于LuaJava开发的安卓平台轻量级脚本编程语言工具，既具有Lua简洁优雅的特质，又支持绝大部分安卓API，可以使你在手机上快速编写小型应用。
 官方QQ群：236938279(已满)
 http://jq.qq.com/?_wv=1027&k=dcofRr
 官方QQ2群：148389676
@@ -1278,6 +1280,7 @@ newTimer(func, arg)
 ]===]
 activity.setTitle("帮助")
 activity.setTheme(autotheme())
+activity.getSupportActionBar().setDisplayHomeAsUpEnabled(true)
 
 
 list={}
@@ -1329,11 +1332,12 @@ func["捐赠"]=function()
   intent.setData(content_url);
   activity.startActivity(intent);
 end
+--[[
 func["返回"]=function()
   activity.finish()
-end
+end]]
 
-items={"捐赠","返回"}
+items={"捐赠",--[["返回"]]}
 function onCreateOptionsMenu(menu)
   for k,v in ipairs(items) do
     m=menu.add(v)
@@ -1342,7 +1346,12 @@ function onCreateOptionsMenu(menu)
 end
 
 function onOptionsItemSelected(item)
-  onMenuItemSelected(item.getItemId(), item)
+  local id=item.getItemId()
+  if id==android.R.id.home then
+    activity.finish()
+   else
+    onMenuItemSelected(id, item)
+  end
 end
 function onMenuItemSelected(id,item)
   func[item.getTitle()]()

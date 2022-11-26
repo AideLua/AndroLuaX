@@ -5,7 +5,12 @@ import "android.widget.*"
 import "android.view.*"
 import "com.google.android.material.textfield.TextInputEditText"
 import "com.google.android.material.textfield.TextInputLayout"
-import "androidx.appcompat.widget.SwitchCompat"
+import "com.google.android.material.switchmaterial.SwitchMaterial"
+import "com.google.android.material.button.MaterialButton"
+import "androidx.appcompat.widget.AppCompatSpinner"
+import "com.google.android.material.textview.MaterialTextView"
+import "com.google.android.material.dialog.MaterialAlertDialogBuilder"
+
 require "permission"
 import "layout"
 import "autotheme"
@@ -14,14 +19,38 @@ activity.setTitle('工程属性')
 activity.setTheme(autotheme())
 activity.setContentView(loadlayout(layout))
 
-plist=ListView(activity)
-dlg=LuaDialog(activity)
+--plist=ListView(activity)
+--[[
+dlg=MaterialAlertDialogBuilder(activity)
+
 dlg.title="更改权限"
-dlg.view=plist
-dlg.setButton("确定")
+--dlg.view=plist
+dlg.setPositiveButton("确定",nil)]]
 btn.onClick=function()
-  dlg.show()
+  --dlg.show()
+  local checkedList={}
+  for index,content in ipairs(ps) do
+    table.insert(checkedList,not not(pcs[content]))
   end
+  MaterialAlertDialogBuilder(this)
+  .setTitle("更改权限")
+  .setMultiChoiceItems(pss,checkedList,function(dialog,which,isChecked)
+    checkedList[which+1]=isChecked
+  end)
+  .setPositiveButton("关闭",function()
+    --table.clear(rs)
+    for index,content in ipairs(ps) do
+      pcs[content]=checkedList[index]
+      --[[
+      if checkedList[index] then
+        
+        --table.insert(rs,content)
+      end]]
+    end
+  end)
+  .show()
+end
+
 projectdir=...
 luaproject=projectdir.."/init.lua"
 app={}
@@ -38,7 +67,7 @@ debugmode.Checked=app.debugmode==nil or app.debugmode
 app_key.Text=app.app_key or ""
 app_channel.Text=app.app_channel or ""
 
-plist.ChoiceMode=ListView.CHOICE_MODE_MULTIPLE;
+--plist.ChoiceMode=ListView.CHOICE_MODE_MULTIPLE;
 pss={}
 ps={}
 for k,v in pairs(permission_info) do
@@ -50,18 +79,29 @@ for k,v in ipairs(ps) do
   table.insert(pss,permission_info[v])
 end
 
-adp=ArrayListAdapter(activity,android.R.layout.simple_list_item_multiple_choice,String(pss))
-plist.Adapter=adp
+--adp=ArrayListAdapter(activity,android.R.layout.simple_list_item_multiple_choice,String(pss))
+--plist.Adapter=adp
+--rs=app.user_permission or {}
 
 pcs={}
 for k,v in ipairs(app.user_permission or {}) do
   pcs[v]=true
 end
+--[=[
+checked={}
 for k,v in ipairs(ps) do
+  table.insert(checked,pcs[v] or false)
+  --[[
   if pcs[v] then
     plist.setItemChecked(k-1,true)
-  end
-end
+  end]]
+end]=]
+--[[
+dlg.setMultiChoiceItems(String(pss), (checked), nil)
+dlg=dlg.create()
+--dlg.show()
+plist=dlg.getListView()]]
+
 
 local fs=luajava.astable(android.R.style.getFields())
 local tss={"Theme"}
@@ -72,7 +112,7 @@ for k,v in ipairs(fs) do
   end
 end
 
-local tadp=ArrayAdapter(activity,android.R.layout.simple_list_item_1, String(tss))
+tadp=ArrayAdapter(activity,android.R.layout.simple_list_item_1, String(tss))
 tlist.Adapter=tadp
 
 for k,v in ipairs(tss) do
@@ -113,16 +153,23 @@ function onCreateOptionsMenu(menu)
   menu.add("保存").setShowAsAction(1)
 end
 
+--rs={}
 function onOptionsItemSelected(item)
   if appname.Text=="" or appver.Text=="" or packagename.Text=="" then
     Toast.makeText(activity,"项目不能为空",500).show()
     return true
   end
-
+  --[[
   local cs=plist.getCheckedItemPositions()
   local rs={}
   for n=1,#ps do
     if cs.get(n-1) then
+      table.insert(rs,ps[n])
+    end
+  end]]
+  local rs={}
+  for n=1,#ps do
+    if pcs[ps[n]] then
       table.insert(rs,ps[n])
     end
   end

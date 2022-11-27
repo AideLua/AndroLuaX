@@ -312,6 +312,7 @@ local function binapk(luapath, apkpath)
                 local xml = AXmlDecoder.read(list, zis)
                 local req = {
                     [activity.getPackageName()] = packagename,
+                    [activity.getPackageName()..".androidx-startup"] = packagename..".androidx-startup",
                     [info.nonLocalizedLabel] = appname,
                     [ver] = appver,
                     [".*\\\\.lua"] = "",

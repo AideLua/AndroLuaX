@@ -25,6 +25,9 @@ function onVersionChanged(n, o)
   local dlg = MaterialAlertDialogBuilder(activity)
   local title = "更新" .. o .. ">" .. n
   local msg = [[
+    2.1(5.0.18)(Material3)
+    修复打包之后安装时，编辑器与成品它俩必须没一个
+    
     2.0(5.0.18)(Material3)
     修复导入时报错
     更新AndroidX

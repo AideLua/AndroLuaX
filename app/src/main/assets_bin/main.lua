@@ -53,7 +53,7 @@ function onVersionChanged(n, o)
     task支持最大8196个线程，同步执行1024.
   
     5.0.16(1.2)
-    开源Androlua，解决编译时检测导入的问题
+    开源AndroluaX，解决编译时检测导入的问题
     
     5.0.16(1.1)
     修复打包错误，去除R.string.app_name

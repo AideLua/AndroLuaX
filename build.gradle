@@ -16,7 +16,7 @@ buildscript {
     }
     dependencies {
         classpath "com.android.tools.build:gradle:$build_gradle_version"
-        classpath 'com.baidu.mobstat:mtj-circle-plugin:latest.integration'   
+        //classpath 'com.baidu.mobstat:mtj-circle-plugin:latest.integration'   
     }
     
 }

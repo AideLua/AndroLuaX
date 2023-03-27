@@ -19,7 +19,13 @@ import java.util.Arrays;
  * Created by Administrator on 2017/02/04 0004.
  */
 
-public class LuaDialog extends AlertDialog implements  DialogInterface.OnClickListener{
+public class LuaDialog extends AlertDialog implements  DialogInterface.OnClickListener {
+
+    @Override
+    public void cancel() {
+        super.dismiss();
+    }
+
     private Context mContext;
 
     private ListView mListView;
@@ -182,7 +188,7 @@ public class LuaDialog extends AlertDialog implements  DialogInterface.OnClickLi
     public void setOnItemSelectedListener(final AdapterView.OnItemSelectedListener listener) {
         mListView.setOnItemSelectedListener(listener);
     }
-
+/*
     @Override
     public void setOnCancelListener(DialogInterface.OnCancelListener listener) {
         // TODO: Implement this method
@@ -209,7 +215,7 @@ public class LuaDialog extends AlertDialog implements  DialogInterface.OnClickLi
     @Override
     public boolean isShowing() {
         return super.isShowing();
-    }
+    }*/
 
     @Override
     public void onClick(DialogInterface dialog, int which) {

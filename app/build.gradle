@@ -22,9 +22,9 @@ android {
         applicationId "com.jesse205.androlua.androidX.material3"
         minSdkVersion 21
         // noinspection ExpiredTargetSdkVersion
-        targetSdkVersion 29
-        versionCode 2201
-        versionName "2.2(5.0.18)(Material3)(alpha)"
+        targetSdkVersion 29//新版本不会自动授予完整的存储权限
+        versionCode 2299
+        versionName "2.2(5.0.18)(Material3)"
         signingConfig signingConfigs.release
         multiDexEnabled true
     }

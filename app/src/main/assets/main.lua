@@ -668,7 +668,6 @@ function onVersionChanged(n, o)
   dlg.setPositiveButton("确定", nil)
   dlg.setNegativeButton("帮助", { onClick = func.help })
   dlg.setNeutralButton("捐赠", { onClick = func.donation })
-  dlg.show()
   DialogHelper.enableTextIsSelectable(dlg.show())
 end
 

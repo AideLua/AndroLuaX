@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources xmlns:tools="http://schemas.android.com/tools">
+
+    <style name="Platform.V23.Theme.AndroLuaX.Material3" parent="Platform.V21.Theme.AndroLuaX.Material3">
+        <item name="colorPrimaryDark">@color/system_window_scrim</item>
+        <item name="android:windowLightStatusBar">?isLightTheme</item>
+    </style>
+
+    <style name="Platform.Theme.AndroLuaX.Material3" parent="Platform.V23.Theme.AndroLuaX.Material3" />
+
+    <style name="Base.Theme.AndroLuaX.Material3.Welcome" parent="Theme.AndroLuaX.Material3">
+        <item name="colorPrimaryDark">?windowBackgroundColor</item>
+        <item name="android:windowIsTranslucent">false</item>
+        <item name="android:windowBackground">@drawable/welcome</item>
+        <item name="android:windowDisablePreview">false</item>
+        <item name="android:windowLightStatusBar">true</item>
+        <item name="android:windowLightNavigationBar" tools:targetApi="o_mr1">true</item>
+        <item name="windowActionModeOverlay">true</item>
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+        <item name="windowBackgroundColor">#FFFAFAFA</item>
+    </style>
+</resources>

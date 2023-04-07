@@ -1,10 +1,15 @@
 package com.androlua;
 
 //import android.app.AlertDialog;
+
+import androidx.appcompat.app.AlertControllerBridge;
 import androidx.appcompat.app.AlertDialog;
+
 import android.content.Context;
 import android.content.DialogInterface;
+import android.content.res.TypedArray;
 import android.graphics.drawable.Drawable;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayListAdapter;
@@ -19,16 +24,16 @@ import java.util.Arrays;
  * Created by Administrator on 2017/02/04 0004.
  */
 
-public class LuaDialog extends AlertDialog implements  DialogInterface.OnClickListener {
+public class LuaDialog extends AlertDialog implements DialogInterface.OnClickListener {
 
     @Override
     public void cancel() {
         super.dismiss();
     }
 
-    private Context mContext;
+    private final Context mContext;
 
-    private ListView mListView;
+    private final ListView mListView;
 
     private String mMessage;
 
@@ -37,16 +42,29 @@ public class LuaDialog extends AlertDialog implements  DialogInterface.OnClickLi
     private View mView;
     private OnClickListener mOnClickListener;
 
+    private final int mListItemLayout;
+    private final LayoutInflater mInflater;
+    private final AlertControllerBridge.RecycleListViewBridge recycleListViewBridge;
+    private boolean hasButtons;
+    private boolean hasTitle;
+
+
     public LuaDialog(Context context) {
-        super(context);
-        mContext = context;
-        mListView = new ListView(mContext);
+        this(context, 0);
     }
 
     public LuaDialog(Context context, int theme) {
         super(context, theme);
         mContext = context;
-        mListView = new ListView(mContext);
+        // 给列表添加间距
+        final TypedArray a = context.obtainStyledAttributes(null, R.styleable.AlertDialog,
+                R.attr.alertDialogStyle, 0);
+        int listLayout = a.getResourceId(androidx.appcompat.R.styleable.AlertDialog_listLayout, 0);
+        mListItemLayout = a.getResourceId(androidx.appcompat.R.styleable.AlertDialog_listItemLayout, 0);
+        a.recycle();
+        mInflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+        mListView = (ListView) mInflater.inflate(listLayout, null);
+        recycleListViewBridge = new AlertControllerBridge.RecycleListViewBridge(mListView);
     }
 
     public void setButton(CharSequence text) {
@@ -54,46 +72,58 @@ public class LuaDialog extends AlertDialog implements  DialogInterface.OnClickLi
     }
 
     public void setButton1(CharSequence text) {
-        setButton(DialogInterface.BUTTON_POSITIVE, text, this);
+        setOkButton(text);
     }
+
     public void setButton2(CharSequence text) {
-        setButton(DialogInterface.BUTTON_NEGATIVE, text, this);
+       setNegButton(text);
+
     }
+
     public void setButton3(CharSequence text) {
-        setButton(DialogInterface.BUTTON_NEUTRAL, text, this);
+       setNeuButton(text);
     }
+
     public void setPosButton(CharSequence text) {
-        setButton(DialogInterface.BUTTON_POSITIVE, text, this);
+        setPositiveButton(text,this);
     }
+
     public void setNegButton(CharSequence text) {
-        setButton(DialogInterface.BUTTON_NEGATIVE, text, this);
+        setNegativeButton(text,this);
     }
+
     public void setNeuButton(CharSequence text) {
-        setButton(DialogInterface.BUTTON_NEUTRAL, text, this);
+        setNeutralButton(text,this);
     }
 
     public void setOkButton(CharSequence text) {
-        setButton(DialogInterface.BUTTON_POSITIVE, text, this);
+        setPositiveButton(text,this);
     }
 
     public void setCancelButton(CharSequence text) {
-        setButton(DialogInterface.BUTTON_NEGATIVE, text, this);
+        setNegativeButton(text,this);
     }
 
     public void setOnClickListener(LuaDialog.OnClickListener listener) {
-        mOnClickListener=listener;
+        mOnClickListener = listener;
     }
 
     public void setPositiveButton(CharSequence text, DialogInterface.OnClickListener listener) {
         setButton(DialogInterface.BUTTON_POSITIVE, text, listener);
+        hasButtons=true;
+        recycleListViewBridge.setHasDecor(hasTitle,hasButtons);
     }
 
     public void setNegativeButton(CharSequence text, DialogInterface.OnClickListener listener) {
         setButton(DialogInterface.BUTTON_NEGATIVE, text, listener);
+        hasButtons=true;
+        recycleListViewBridge.setHasDecor(hasTitle,hasButtons);
     }
 
     public void setNeutralButton(CharSequence text, DialogInterface.OnClickListener listener) {
         setButton(DialogInterface.BUTTON_NEUTRAL, text, listener);
+        hasButtons=true;
+        recycleListViewBridge.setHasDecor(hasTitle,hasButtons);
     }
 
     public String getTitle() {
@@ -105,6 +135,8 @@ public class LuaDialog extends AlertDialog implements  DialogInterface.OnClickLi
         // TODO: Implement this method
         mTitle = title.toString();
         super.setTitle(title);
+        hasTitle=true;
+        recycleListViewBridge.setHasDecor(hasTitle,hasButtons);
     }
 
     public String getMessage() {
@@ -137,7 +169,7 @@ public class LuaDialog extends AlertDialog implements  DialogInterface.OnClickLi
 
     public void setItems(String[] items) {
         ArrayList<String> alist = new ArrayList<String>(Arrays.asList(items));
-        ArrayListAdapter adp = new ArrayListAdapter<String>(mContext, android.R.layout.simple_list_item_1, alist);
+        ArrayListAdapter<String> adp = new ArrayListAdapter<String>(mContext, mListItemLayout, alist);
         setAdapter(adp);
         mListView.setChoiceMode(ListView.CHOICE_MODE_NONE);
     }
@@ -148,29 +180,29 @@ public class LuaDialog extends AlertDialog implements  DialogInterface.OnClickLi
         mListView.setAdapter(adp);
     }
 
-    public void setSingleChoiceItems(CharSequence[] items){
+    public void setSingleChoiceItems(CharSequence[] items) {
         setSingleChoiceItems(items, 0);
     }
 
-    public void setSingleChoiceItems(CharSequence[] items, int checkedItem){
+    public void setSingleChoiceItems(CharSequence[] items, int checkedItem) {
         ArrayList<CharSequence> alist = new ArrayList<CharSequence>(Arrays.asList(items));
-        ArrayListAdapter adp = new ArrayListAdapter<CharSequence>(mContext, android.R.layout.simple_list_item_single_choice, alist);
+        ArrayListAdapter<CharSequence> adp = new ArrayListAdapter<CharSequence>(mContext, android.R.layout.simple_list_item_single_choice, alist);
         setAdapter(adp);
         mListView.setChoiceMode(ListView.CHOICE_MODE_SINGLE);
-        mListView.setItemChecked(checkedItem,true);
+        mListView.setItemChecked(checkedItem, true);
     }
 
-    public void setMultiChoiceItems(CharSequence[] items){
+    public void setMultiChoiceItems(CharSequence[] items) {
         setMultiChoiceItems(items, new int[0]);
     }
 
-    public void setMultiChoiceItems(CharSequence[] items, int[] checkedItems){
+    public void setMultiChoiceItems(CharSequence[] items, int[] checkedItems) {
         ArrayList<CharSequence> alist = new ArrayList<CharSequence>(Arrays.asList(items));
-        ArrayListAdapter adp = new ArrayListAdapter<CharSequence>(mContext, android.R.layout.simple_list_item_multiple_choice, alist);
+        ArrayListAdapter<CharSequence> adp = new ArrayListAdapter<CharSequence>(mContext, android.R.layout.simple_list_item_multiple_choice, alist);
         setAdapter(adp);
         mListView.setChoiceMode(ListView.CHOICE_MODE_MULTIPLE);
-        for (int i:checkedItems)
-            mListView.setItemChecked(i,true);
+        for (int i : checkedItems)
+            mListView.setItemChecked(i, true);
     }
 
     public ListView getListView() {
@@ -219,12 +251,12 @@ public class LuaDialog extends AlertDialog implements  DialogInterface.OnClickLi
 
     @Override
     public void onClick(DialogInterface dialog, int which) {
-        if(mOnClickListener!=null)
-            mOnClickListener.onClick(this,getButton(which));
+        if (mOnClickListener != null)
+            mOnClickListener.onClick(this, getButton(which));
     }
 
-    public interface OnClickListener{
-        public void onClick(LuaDialog dlg,Button btn);
+    public interface OnClickListener {
+        public void onClick(LuaDialog dlg, Button btn);
     }
 
 /*

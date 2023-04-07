@@ -1,268 +1,278 @@
 <?xml version='1.0' encoding='utf-8'?>
-<manifest
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    package="com.jesse205.androlua.androidX.material3">
+    tools:ignore="MissingLeanbackLauncher">
 
-    <uses-sdk
-        tools:overrideLibrary="androidx.draganddrop|androidx.javascriptengine|androidx.heifwriter|androidx.car.app.projected"/>
+    <uses-sdk tools:overrideLibrary="androidx.wear.watchface.complications.datasource.ktx|androidx.wear.watchface.complications.rendering|androidx.wear.watchface.editor|androidx.wear.watchface.client|androidx.wear.watchface.style|androidx.wear.watchface.data|androidx.security.identity.credential|androidx.draganddrop|androidx.car.app.automotive|androidx.wear.phone.interactions|androidx.wear.remote.interactions|androidx.core.uwb|androidx.health.connect.client|androidx.health.services.client|androidx.wear.ongoing|androidx.javascriptengine|androidx.glance.wear.tiles|androidx.heifwriter|androidx.wear.input.testing|androidx.wear.protolayout.expression|androidx.wear.tiles" />
+
+   <uses-feature
+        android:name="android.hardware.location.gps"
+        android:required="false" />
+    <uses-feature
+        android:name="android.software.leanback"
+        android:required="false" />
+    <uses-feature
+        android:name="android.hardware.camera"
+        android:required="false" />
+    <uses-feature
+        android:name="android.hardware.telephony"
+        android:required="false" />
+    <uses-feature
+        android:name="android.hardware.touchscreen"
+        android:required="false" />
 
     <!-- 读取通话状态和移动网络信息 -->
-    <uses-permission android:name="android.permission.READ_PHONE_STATE"/>
+    <uses-permission android:name="android.permission.READ_PHONE_STATE" />
 
     <!-- 查看 WLAN 状态 -->
-    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE"/>
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
 
     <!-- 查看网络连接 -->
-    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
 
     <!-- 完全的网络访问权限 -->
-    <uses-permission android:name="android.permission.INTERNET"/>
+    <uses-permission android:name="android.permission.INTERNET" />
 
     <!-- 修改或删除 SD 卡中的内容 -->
-    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
 
     <!-- 读取存储卡中的内容 -->
-    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
 
     <!-- 在后台使用位置信息 -->
-    <uses-permission android:name="android.permission.ACCESS_BACKGROUND_LOCATION"/>
+    <uses-permission android:name="android.permission.ACCESS_BACKGROUND_LOCATION" />
 
     <!-- 访问大致位置信息（使用网络进行定位） -->
-    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION"/>
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
 
     <!-- 访问确切位置信息（使用 GPS 和网络进行定位） -->
-    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION"/>
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
 
     <!-- 获取额外的位置信息提供程序命令 -->
-    <uses-permission android:name="android.permission.ACCESS_LOCATION_EXTRA_COMMANDS"/>
+    <uses-permission android:name="android.permission.ACCESS_LOCATION_EXTRA_COMMANDS" />
 
     <!-- 从您的媒体收藏中读取位置信息 -->
-    <uses-permission android:name="android.permission.ACCESS_MEDIA_LOCATION"/>
+    <uses-permission android:name="android.permission.ACCESS_MEDIA_LOCATION" />
 
     <!-- “勿扰”模式使用权限 -->
-    <uses-permission android:name="android.permission.ACCESS_NOTIFICATION_POLICY"/>
+    <uses-permission android:name="android.permission.ACCESS_NOTIFICATION_POLICY" />
 
     <!-- 识别健身运动 -->
-    <uses-permission android:name="android.permission.ACTIVITY_RECOGNITION"/>
+    <uses-permission android:name="android.permission.ACTIVITY_RECOGNITION" />
 
     <!-- 身体传感器 (如心跳速率检测器) -->
-    <uses-permission android:name="android.permission.BODY_SENSORS"/>
+    <uses-permission android:name="android.permission.BODY_SENSORS" />
 
     <!-- 访问蓝牙设置 -->
-    <uses-permission android:name="android.permission.BLUETOOTH_ADMIN"/>
+    <uses-permission android:name="android.permission.BLUETOOTH_ADMIN" />
 
     <!-- 与蓝牙设备配对 -->
-    <uses-permission android:name="android.permission.BLUETOOTH"/>
+    <uses-permission android:name="android.permission.BLUETOOTH" />
 
     <!-- 拍摄照片和录制视频 -->
-    <uses-permission android:name="android.permission.CAMERA"/>
+    <uses-permission android:name="android.permission.CAMERA" />
 
     <!-- 拨打电话 -->
-    <uses-permission android:name="android.permission.CALL_PHONE"/>
+    <uses-permission android:name="android.permission.CALL_PHONE" />
 
     <!-- 发送持久广播 -->
-    <uses-permission android:name="android.permission.BROADCAST_STICKY"/>
+    <uses-permission android:name="android.permission.BROADCAST_STICKY" />
 
     <!-- 展开/收拢状态栏 -->
-    <uses-permission android:name="android.permission.EXPAND_STATUS_BAR"/>
+    <uses-permission android:name="android.permission.EXPAND_STATUS_BAR" />
 
     <!-- 停用锁屏 -->
-    <uses-permission android:name="android.permission.DISABLE_KEYGUARD"/>
+    <uses-permission android:name="android.permission.DISABLE_KEYGUARD" />
 
     <!-- 更改 WLAN 状态 -->
-    <uses-permission android:name="android.permission.CHANGE_WIFI_STATE"/>
+    <uses-permission android:name="android.permission.CHANGE_WIFI_STATE" />
 
     <!-- 允许接收 WLAN 多播 -->
-    <uses-permission android:name="android.permission.CHANGE_WIFI_MULTICAST_STATE"/>
+    <uses-permission android:name="android.permission.CHANGE_WIFI_MULTICAST_STATE" />
 
     <!-- 更改网络连接性 -->
-    <uses-permission android:name="android.permission.CHANGE_NETWORK_STATE"/>
+    <uses-permission android:name="android.permission.CHANGE_NETWORK_STATE"
+        tools:ignore="LeanbackUsesWifi" />
 
     <!-- 检索正在运行的应用 -->
-    <uses-permission android:name="android.permission.GET_TASKS"/>
+    <uses-permission android:name="android.permission.GET_TASKS" />
 
     <!-- 计算应用存储空间 -->
-    <uses-permission android:name="android.permission.GET_PACKAGE_SIZE"/>
+    <uses-permission android:name="android.permission.GET_PACKAGE_SIZE" />
 
     <!-- 安装快捷方式 -->
-    <uses-permission android:name="com.android.launcher.permission.INSTALL_SHORTCUT"/>
+    <uses-permission android:name="com.android.launcher.permission.INSTALL_SHORTCUT" />
 
     <!-- INSTALL_PACKAGES -->
-    <uses-permission android:name="android.permission.INSTALL_PACKAGES"/>
+    <uses-permission android:name="android.permission.INSTALL_PACKAGES"
+        tools:ignore="ProtectedPermissions" />
 
     <!-- 更改您的音频设置 -->
-    <uses-permission android:name="android.permission.MODIFY_AUDIO_SETTINGS"/>
+    <uses-permission android:name="android.permission.MODIFY_AUDIO_SETTINGS" />
 
     <!-- 让应用始终运行 -->
-    <uses-permission android:name="android.permission.PERSISTENT_ACTIVITY"/>
+    <uses-permission android:name="android.permission.PERSISTENT_ACTIVITY" />
 
     <!-- 读取日历 -->
-    <uses-permission android:name="android.permission.READ_CALENDAR"/>
+    <uses-permission android:name="android.permission.READ_CALENDAR" />
 
     <!-- 读取通话记录 -->
-    <uses-permission android:name="android.permission.READ_CALL_LOG"/>
+    <uses-permission android:name="android.permission.READ_CALL_LOG" />
 
     <!-- 读取联系人 -->
-    <uses-permission android:name="android.permission.READ_CONTACTS"/>
+    <uses-permission android:name="android.permission.READ_CONTACTS" />
 
     <!-- 读取电话号码 -->
-    <uses-permission android:name="android.permission.READ_PHONE_NUMBERS"/>
+    <uses-permission android:name="android.permission.READ_PHONE_NUMBERS" />
 
     <!-- 读取短信/彩信 -->
-    <uses-permission android:name="android.permission.READ_SMS"/>
+    <uses-permission android:name="android.permission.READ_SMS" />
 
     <!-- 读取同步设置 -->
-    <uses-permission android:name="android.permission.READ_SYNC_SETTINGS"/>
+    <uses-permission android:name="android.permission.READ_SYNC_SETTINGS" />
 
     <!-- 读取同步统计信息 -->
-    <uses-permission android:name="android.permission.READ_SYNC_STATS"/>
+    <uses-permission android:name="android.permission.READ_SYNC_STATS" />
 
     <!-- 卸载快捷方式 -->
-    <uses-permission android:name="com.android.launcher.permission.UNINSTALL_SHORTCUT"/>
+    <uses-permission android:name="com.android.launcher.permission.UNINSTALL_SHORTCUT" />
 
     <!-- 修改系统设置 -->
-    <uses-permission android:name="android.permission.WRITE_SETTINGS"/>
+    <uses-permission android:name="android.permission.WRITE_SETTINGS"
+        tools:ignore="ProtectedPermissions" />
 
     <!-- 新建/修改/删除联系人 -->
-    <uses-permission android:name="android.permission.WRITE_CONTACTS"/>
+    <uses-permission android:name="android.permission.WRITE_CONTACTS" />
 
     <!-- 新建/修改/删除通话记录 -->
-    <uses-permission android:name="android.permission.WRITE_CALL_LOG"/>
+    <uses-permission android:name="android.permission.WRITE_CALL_LOG" />
 
     <!-- 新建/修改/删除日历 -->
-    <uses-permission android:name="android.permission.WRITE_CALENDAR"/>
+    <uses-permission android:name="android.permission.WRITE_CALENDAR" />
 
     <!-- 拨打/接听互联网通话 -->
-    <uses-permission android:name="android.permission.USE_SIP"/>
+    <uses-permission android:name="android.permission.USE_SIP" />
 
     <!-- 使用指纹硬件 -->
-    <uses-permission android:name="android.permission.USE_FINGERPRINT"/>
+    <uses-permission android:name="android.permission.USE_FINGERPRINT" />
 
     <!-- 使用生物特征硬件 -->
-    <uses-permission android:name="android.permission.USE_BIOMETRIC"/>
+    <uses-permission android:name="android.permission.USE_BIOMETRIC" />
 
     <!-- 授权使用“查看权限” -->
-    <uses-permission android:name="android.permission.START_VIEW_PERMISSION_USAGE"/>
+    <uses-permission android:name="android.permission.START_VIEW_PERMISSION_USAGE"
+        tools:ignore="ProtectedPermissions" />
 
     <!-- 发送短信 -->
-    <uses-permission android:name="android.permission.SEND_SMS"/>
+    <uses-permission android:name="android.permission.SEND_SMS" />
 
     <!-- 请求安装文件包 -->
-    <uses-permission android:name="android.permission.REQUEST_INSTALL_PACKAGES"/>
+    <uses-permission android:name="android.permission.REQUEST_INSTALL_PACKAGES" />
 
     <!-- 请求忽略电池优化 -->
-    <uses-permission android:name="android.permission.REQUEST_IGNORE_BATTERY_OPTIMIZATIONS"/>
+    <uses-permission android:name="android.permission.REQUEST_IGNORE_BATTERY_OPTIMIZATIONS" />
 
     <!-- 在后台运行 -->
-    <uses-permission android:name="android.permission.REQUEST_COMPANION_RUN_IN_BACKGROUND"/>
+    <uses-permission android:name="android.permission.REQUEST_COMPANION_RUN_IN_BACKGROUND" />
 
     <!-- 控制近距离通信 -->
-    <uses-permission android:name="android.permission.NFC"/>
+    <uses-permission android:name="android.permission.NFC" />
 
     <application
-        android:largeHeap="true"
         android:name="com.androlua.LuaApplication"
-        android:persistent="true"
-        android:resizeableActivity="true"
-        android:supportsPictureInPicture="true"
         android:allowBackup="true"
         android:icon="@drawable/icon"
         android:label="AndroLuaX"
-        android:usesCleartextTraffic="true"
+        android:largeHeap="true"
+        android:persistent="true"
         android:requestLegacyExternalStorage="true"
-        android:theme="@style/AppTheme.Material3">
+        android:resizeableActivity="true"
+        android:supportsPictureInPicture="true"
+        android:theme="@style/Theme.AndroLuaX.Material3"
+        android:usesCleartextTraffic="true"
+        tools:targetApi="n">
 
         <uses-library
             android:name="org.apache.http.legacy"
-            android:required="false"/>
+            android:required="false" />
 
         <meta-data
             android:name="android.max_aspect"
-            android:value="4"/>
+            android:value="4" />
 
         <meta-data
             android:name="BaiduMobAd_EXCEPTION_LOG"
-            android:value="true"/>
+            android:value="true" />
 
         <meta-data
             android:name="EasyGoClient"
-            android:value="true"/>
+            android:value="true" />
 
         <activity
+            android:name="com.androlua.Main"
             android:configChanges="keyboardHidden|orientation|screenSize"
-            android:label="AndroLuaX"
+            android:exported="true"
             android:launchMode="singleTask"
-            android:windowSoftInputMode="adjustResize|stateHidden"
-            android:name="com.androlua.Main">
+            android:windowSoftInputMode="adjustResize|stateHidden">
             <intent-filter>
-                <action
-                    android:name="android.intent.action.VIEW" />
-                <category
-                    android:name="android.intent.category.DEFAULT" />
-                <category
-                    android:name="android.intent.category.BROWSABLE" />
+                <action android:name="android.intent.action.VIEW" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.BROWSABLE" />
+
                 <data android:scheme="file" />
                 <data android:scheme="content" />
-                <data
-                    android:mimeType="application/alp" />
+                <data android:mimeType="application/alp" />
                 <data android:host="*" />
                 <data android:pathPattern=".*\.alp" />
             </intent-filter>
             <intent-filter>
-                <action
-                    android:name="android.intent.action.VIEW" />
-                <category
-                    android:name="android.intent.category.DEFAULT" />
-                <category
-                    android:name="android.intent.category.BROWSABLE" />
+                <action android:name="android.intent.action.VIEW" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.BROWSABLE" />
+
                 <data android:scheme="file" />
                 <data android:scheme="content" />
                 <data android:host="*" />
-                <data
-                    android:mimeType="application/octet-stream" />
-                <data
-                    android:mimeType="application/alp" />
+                <data android:mimeType="application/octet-stream" />
+                <data android:mimeType="application/alp" />
             </intent-filter>
         </activity>
 
         <activity
+            android:name="com.androlua.LuaActivity"
             android:configChanges="keyboardHidden|orientation|screenSize"
-            android:windowSoftInputMode="adjustResize|stateHidden"
-            android:label="AndroLuaX"
-            android:name="com.androlua.LuaActivity">
+            android:exported="true"
+            android:windowSoftInputMode="adjustResize|stateHidden">
             <intent-filter>
-                <action
-                    android:name="android.intent.action.VIEW" />
-                <category
-                    android:name="android.intent.category.DEFAULT" />
-                <category
-                    android:name="android.intent.category.BROWSABLE" />
+                <action android:name="android.intent.action.VIEW" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.BROWSABLE" />
+
                 <data android:scheme="androlua" />
-                <data android:host="com.Jesse205.androlua.androidX1_0_0.material1_5" />
+                <data android:host="com.Jesse205.androlua.androidX1_0_0.material1_5"
+                    tools:ignore="AppLinkUrlError" />
             </intent-filter>
             <intent-filter>
-                <action
-                    android:name="android.intent.action.VIEW" />
-                <action
-                    android:name="android.intent.action.EDIT" />
-                <category
-                    android:name="android.intent.category.DEFAULT" />
-                <category
-                    android:name="android.intent.category.BROWSABLE" />
-                <data
-                    android:mimeType="application/lua" />
+                <action android:name="android.intent.action.VIEW" />
+                <action android:name="android.intent.action.EDIT" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.BROWSABLE" />
+
+                <data android:mimeType="application/lua" />
                 <data android:scheme="file" />
                 <data android:scheme="content" />
                 <data android:host="*" />
             </intent-filter>
             <intent-filter>
-                <action
-                    android:name="android.intent.action.VIEW" />
-                <category
-                    android:name="android.intent.category.DEFAULT" />
-                <category
-                    android:name="android.intent.category.BROWSABLE" />
+                <action android:name="android.intent.action.VIEW" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.BROWSABLE" />
+
                 <data android:scheme="file" />
                 <data android:scheme="content" />
                 <data android:mimeType="text/*" />
@@ -272,59 +282,51 @@
         </activity>
 
         <activity
+            android:name="com.androlua.LuaActivityX"
             android:configChanges="keyboardHidden|orientation|screenSize"
             android:documentLaunchMode="intoExisting"
-            android:windowSoftInputMode="adjustResize|stateHidden"
             android:excludeFromRecents="false"
-            android:label="AndroLuaX"
-            android:name="com.androlua.LuaActivityX">
-        </activity>
+            android:exported="true"
+            android:windowSoftInputMode="adjustResize|stateHidden" />
 
         <activity
-            android:label="AndroLuaX"
-            android:windowSoftInputMode="adjustResize|stateHidden"
             android:name="com.androlua.Welcome"
-            android:theme="@style/AppWelcome">
+            android:exported="true"
+            android:theme="@style/Theme.AndroLuaX.Material3.Welcome"
+            android:windowSoftInputMode="adjustResize|stateHidden">
 
             <intent-filter>
-
-                <action android:name="android.intent.action.MAIN"/>
-
-                <category android:name="android.intent.category.LAUNCHER"/>
-
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
 
         </activity>
 
         <activity
             android:name="com.nirenr.screencapture.ScreenCaptureActivity"
-            android:theme="@android:style/Theme.Translucent.NoTitleBar"/>
+            android:theme="@android:style/Theme.Translucent.NoTitleBar" />
 
         <service
-            android:enabled="true"
-            android:name="com.androlua.LuaService"/>
+            android:name="com.androlua.LuaService"
+            android:enabled="true" />
 
         <service
+            android:name="com.androlua.LuaAccessibilityService"
             android:enabled="true"
             android:exported="true"
             android:label="AndroLuaX"
-            android:name="com.androlua.LuaAccessibilityService"
             android:permission="android.permission.BIND_ACCESSIBILITY_SERVICE">
 
             <meta-data
                 android:name="android.accessibilityservice"
-                android:resource="@xml/accessibility_service_config"/>
+                android:resource="@xml/accessibility_service_config" />
 
             <intent-filter>
+                <action android:name="android.accessibilityservice.AccessibilityService" />
 
-                <action android:name="android.accessibilityservice.AccessibilityService"/>
-
-                <category android:name="android.accessibilityservice.category.FEEDBACK_AUDIBLE"/>
-
-                <category android:name="android.accessibilityservice.category.FEEDBACK_HAPTIC"/>
-
-                <category android:name="android.accessibilityservice.category.FEEDBACK_SPOKEN"/>
-
+                <category android:name="android.accessibilityservice.category.FEEDBACK_AUDIBLE" />
+                <category android:name="android.accessibilityservice.category.FEEDBACK_HAPTIC" />
+                <category android:name="android.accessibilityservice.category.FEEDBACK_SPOKEN" />
             </intent-filter>
 
         </service>

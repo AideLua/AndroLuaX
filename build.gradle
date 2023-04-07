@@ -1,5 +1,5 @@
 buildscript {
-    ext.build_gradle_version = '7.2.1'
+    ext.build_gradle_version = '8.1.0-alpha11'
 
     repositories {
         maven { url 'https://maven.aliyun.com/repository/jcenter' } 
@@ -12,7 +12,6 @@ buildscript {
         google()
         mavenLocal()
         mavenCentral()
-		jcenter()
     }
     dependencies {
         classpath "com.android.tools.build:gradle:$build_gradle_version"
@@ -22,20 +21,20 @@ buildscript {
 }
 allprojects {
     repositories {
-        maven { url 'https://maven.aliyun.com/repository/jcenter' } 
+
+        // maven { url 'https://maven.aliyun.com/repository/jcenter' }
         maven { url 'https://maven.aliyun.com/repository/public/' } 
         maven { url 'https://maven.aliyun.com/repository/google/' }
         maven { url 'https://maven.aliyun.com/repository/gradle-plugin/' }
         maven { url 'https://dl.bintray.com/ppartisan/maven/' }
-        maven { url "https://clojars.org/repo/" }
+        // maven { url "https://clojars.org/repo/" }
         maven { url "https://jitpack.io" }
         mavenLocal()
         mavenCentral()
         google()
-        jcenter()
     }
 }
 
-task clean(type: Delete) {
+tasks.register('clean', Delete) {
     delete rootProject.buildDir
 }

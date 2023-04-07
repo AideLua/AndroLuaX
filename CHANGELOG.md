@@ -1,4 +1,13 @@
-## AndroLuaX
+## 更新日志
+
+### 2.2(5.0.18)(Material3)
+
+1. 添加很多支持库
+2. 更新 AndroidX 与 Material
+3. 修复华为平行视界无法使用的问题
+4. 添加更多 AndroidX 依赖
+5. 添加了 LuaMaterialDialog，此类作为 LuaDialog 的代替品，仅方便开发者快速将项目转移到 Material3 风格。实际编写时请使用 MaterialAlertDialogBuilder
+6. 美化主题
 
 ### 2.1(5.0.18)(Material3)
 

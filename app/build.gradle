@@ -1,177 +1,427 @@
 apply plugin: 'com.android.application'
 
 android {
-    compileSdkVersion 33
-    buildToolsVersion "33.0.0"
+    signingConfigs {
+        debug {
+            storeFile file('F:\\my\\programming\\Android\\签名\\Jesse205.keystore')
+            keyAlias 'Jesse205 App 证书'
+            storePassword 'Jesse205'
+            keyPassword 'Jesse205'
+        }
+        release {
+            storeFile file('F:\\my\\programming\\Android\\签名\\Jesse205.keystore')
+            storePassword 'Jesse205'
+            keyPassword 'Jesse205'
+            keyAlias 'Jesse205 App 证书'
+        }
+    }
+    compileSdkPreview 'UpsideDownCake'
+    buildToolsVersion '33.0.2'
 
     defaultConfig {
         applicationId "com.jesse205.androlua.androidX.material3"
         minSdkVersion 21
+        // noinspection ExpiredTargetSdkVersion
         targetSdkVersion 29
         versionCode 2201
         versionName "2.2(5.0.18)(Material3)(alpha)"
+        signingConfig signingConfigs.release
+        multiDexEnabled true
     }
 
     buildTypes {
         release {
-            minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
             shrinkResources false
-            ndk {abiFilters 'armeabi-v7a', 'x86', 'arm64-v8a'}
-       }
+            // noinspection ChromeOsAbiSupport
+            ndk { abiFilters 'armeabi-v7a', 'arm64-v8a' }
+            signingConfig signingConfigs.release
+            minifyEnabled false
+            multiDexEnabled true
+        }
         debug {
             minifyEnabled false
             shrinkResources false
-            ndk {abiFilters 'armeabi-v7a', 'x86', 'arm64-v8a'}
+            // noinspection ChromeOsAbiSupport
+            ndk { abiFilters 'armeabi-v7a', 'arm64-v8a' }
         }
     }
+
+    buildFeatures {
+        prefab true
+        compose true
+    }
+
+    composeOptions {
+        kotlinCompilerExtensionVersion = "1.1.0-beta03"
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+    // kotlinOptions {
+    //     jvmTarget = JavaVersion.VERSION_1_8.toString()
+    // }
+
+
     sourceSets {
         main {
-            //jniLibs.srcDirs = ['libs']
+            // jniLibs.srcDirs = ['libs']
         }
     }
-    lintOptions {
-          abortOnError false
-          checkReleaseBuilds false
+    lint {
+        abortOnError false
+        checkReleaseBuilds false
     }
-    
+    namespace 'com.jesse205.androlua.androidX.material3'
+
 }
 
 dependencies {
-    api fileTree(dir: "libs", include: ["*.jar"])
+    def activity_version = "1.8.0-alpha02"
+    def appcompat_version = "1.7.0-alpha02"
+    def appsearch_version = "1.1.0-alpha02"
+    def camerax_version = "1.3.0-alpha04"
+    def collection_version = "1.2.0"
+    def core_version = "1.9.0"
+    def emoji2_version = "1.3.0"
+    def enterprise_version = "1.1.0"
+    def fragment_version = "1.5.6"
+    def leanback_version = "1.2.0-alpha02"
+    def lifecycle_version = "2.6.1"
+    def arch_version = "2.1.0"
+    def media2_version = "1.2.1"
+    def media3_version = "1.0.0-rc01"
+    def nav_version = "2.5.3"
+    def paging_version = "3.1.1"
+    def preference_version = "1.2.0"
+    def room_version = "2.5.0"
+    def sqlite_version = "2.3.0"
+    def work_version = "2.8.0"
 
+    api fileTree(dir: "libs", include: ["*.jar"])
     api project(':androlua')
-    api 'androidx.appcompat:appcompat:1.7.0-alpha01'
-    api 'com.google.android.material:material:1.9.0-alpha02'
+
+    // activity
+    implementation "androidx.activity:activity:$activity_version"
+    // implementation "androidx.activity:activity-ktx:$activity_version"
+
+    implementation 'androidx.ads:ads-identifier:1.0.0-alpha04'
+
+    // annotation
+    implementation "androidx.annotation:annotation:1.6.0"
+    implementation "androidx.annotation:annotation-experimental:1.4.0-dev01"
+
+    // appcompat
+    implementation "androidx.appcompat:appcompat:$appcompat_version"
+    implementation "androidx.appcompat:appcompat-resources:$appcompat_version"
 
     // appsearch
-    api "androidx.appsearch:appsearch:1.1.0-alpha02"
-    // annotationProcessor "androidx.appsearch:appsearch-compiler:1.1.0-alpha02"
-    api "androidx.appsearch:appsearch-local-storage:1.1.0-alpha02"
-    api "androidx.appsearch:appsearch-platform-storage:1.1.0-alpha02" 
-    
-    api "androidx.autofill:autofill:1.2.0-beta01"
-    api "androidx.asynclayoutinflater:asynclayoutinflater:1.1.0-alpha01"
-    api "androidx.biometric:biometric:1.2.0-alpha05"
-    api "androidx.browser:browser:1.5.0"
-    
+    implementation "androidx.appsearch:appsearch:$appsearch_version"
+    annotationProcessor "androidx.appsearch:appsearch-compiler:$appsearch_version"
+    implementation "androidx.appsearch:appsearch-local-storage:$appsearch_version"
+    implementation "androidx.appsearch:appsearch-platform-storage:$appsearch_version"
+
+    implementation "androidx.asynclayoutinflater:asynclayoutinflater:1.1.0-alpha01"
+    implementation "androidx.autofill:autofill:1.2.0-beta01"
+
+    // biometric
+    implementation "androidx.biometric:biometric:1.2.0-alpha05"
+    // implementation "androidx.biometric:biometric-ktx:1.2.0-alpha05"
+
+    implementation "androidx.browser:browser:1.5.0"
+
     // car
-    /* api "androidx.car.app:app:1.2.0"
-    api "androidx.car.app:app-projected:1.2.0"
-    api "androidx.car.app:app-automotive:1.2.0" */
-    
+    implementation "androidx.car.app:app:1.2.0"
+    // implementation "androidx.car.app:app-projected:1.2.0"
+    implementation "androidx.car.app:app-automotive:1.2.0"
+
+    // For testing
+    testImplementation "androidx.car.app:app-testing:1.2.0"
+
     // camera
-    // kt不兼容
-    /* api "androidx.camera:camera-core:1.3.0-alpha04"
-    api "androidx.camera:camera-camera2:1.3.0-alpha04"
-    api "androidx.camera:camera-lifecycle:1.3.0-alpha04"
-    api "androidx.camera:camera-video:1.3.0-alpha04"
-    api "androidx.camera:camera-view:1.3.0-alpha04"
-    api "androidx.camera:camera-mlkit-vision:1.3.0-alpha04"
-    api "androidx.camera:camera-extensions:1.3.0-alpha04" */
-    
-    api "androidx.cardview:cardview:1.0.0"
-    api "androidx.collection:collection:1.3.0-alpha02"
-    api "androidx.constraintlayout:constraintlayout:2.2.0-alpha07"
-    api "androidx.contentpager:contentpager:1.0.0"
-    api "androidx.coordinatorlayout:coordinatorlayout:1.2.0"
-    api "androidx.customview:customview:1.1.0"
-    api "androidx.datastore:datastore-preferences:1.0.0"
-    api "androidx.documentfile:documentfile:1.1.0-alpha01"
-    api "androidx.draganddrop:draganddrop:1.0.0"
-    api "androidx.drawerlayout:drawerlayout:1.2.0-beta01"
-    api "androidx.dynamicanimation:dynamicanimation:1.1.0-alpha03"
-    
-    // emoji
-    api "androidx.emoji2:emoji2:1.3.0-beta02"
-    api "androidx.emoji2:emoji2-views:1.3.0-beta02"
-    api "androidx.emoji2:emoji2-views-helper:1.3.0-beta02"
-    
-    api "androidx.exifinterface:exifinterface:1.3.6"
-    api "androidx.fragment:fragment:1.5.5"
-    api "androidx.graphics:graphics-core:1.0.0-alpha02"
-    api "androidx.gridlayout:gridlayout:1.0.0"
-    
-    // health
-    // 无法找到javalite
-    /* api "androidx.health:health-services-client:1.0.0-beta02"
-    api "androidx.health.connect:connect-client:1.0.0-alpha11" */
-    
-    api "androidx.heifwriter:heifwriter:1.1.0-alpha01"
-    api "androidx.input:input-motionprediction:1.0.0-alpha02"
-    api "androidx.interpolator:interpolator:1.0.0"
-    api "androidx.javascriptengine:javascriptengine:1.0.0-alpha04"
-    
-    // leanback
-    /* api "androidx.leanback:leanback:1.2.0-alpha02"
-    api "androidx.leanback:leanback-preference:1.2.0-alpha02"
-    api "androidx.leanback:leanback-paging:1.1.0-alpha09"
-    api "androidx.leanback:leanback-tab:1.1.0-beta01"
-    api "androidx.loader:loader:1.1.0" */
-    
+    implementation "androidx.camera:camera-core:${camerax_version}"
+    implementation "androidx.camera:camera-camera2:${camerax_version}"
+    implementation "androidx.camera:camera-lifecycle:${camerax_version}"
+    implementation "androidx.camera:camera-video:${camerax_version}"
+    implementation "androidx.camera:camera-view:${camerax_version}"
+    implementation "androidx.camera:camera-mlkit-vision:${camerax_version}"
+    implementation "androidx.camera:camera-extensions:${camerax_version}"
+
+    implementation "androidx.cardview:cardview:1.0.0"
+
+    // collection
+    implementation "androidx.collection:collection:$collection_version"
+    // implementation "androidx.collection:collection-ktx:$collection_version"
+
+    // concurrent
+    implementation "androidx.concurrent:concurrent-futures:1.1.0"
+    // implementation "androidx.concurrent:concurrent-futures-ktx:1.1.0"
+
+    // constraintlayout
+    implementation "androidx.constraintlayout:constraintlayout:2.2.0-alpha07"
+    implementation "androidx.constraintlayout:constraintlayout-compose:1.1.0-alpha07"
+
+    implementation "androidx.contentpager:contentpager:1.0.0"
+    implementation "androidx.coordinatorlayout:coordinatorlayout:1.2.0"
+
+    // core
+    implementation "androidx.core:core:$core_version"
+    // implementation "androidx.core:core-ktx:$core_version"
+    implementation "androidx.core:core-role:1.0.0"
+    implementation "androidx.core:core-animation:1.0.0-beta01"
+    // androidTestImplementation "androidx.core:core-animation-testing:1.0.0-beta01"
+    implementation "androidx.core:core-performance:1.0.0-alpha02"
+    implementation "androidx.core:core-google-shortcuts:1.1.0"
+    implementation "androidx.core:core-remoteviews:1.0.0-beta03"
+    implementation "androidx.core:core-splashscreen:1.1.0-alpha01"
+
+    implementation "androidx.core.uwb:uwb:1.0.0-alpha04"
+
+    // credentials
+    implementation "androidx.credentials:credentials:1.0.0-alpha03"
+    implementation "androidx.credentials:credentials-play-services-auth:1.0.0-alpha03"
+
+    implementation "androidx.cursoradapter:cursoradapter:1.0.0"
+    implementation "androidx.customview:customview:1.1.0"
+
+    // datastore
+    implementation "androidx.datastore:datastore-preferences:1.0.0"
+    implementation "androidx.datastore:datastore-preferences-rxjava2:1.0.0"
+    implementation "androidx.datastore:datastore-preferences-rxjava3:1.0.0"
+    implementation "androidx.datastore:datastore:1.0.0"
+    implementation "androidx.datastore:datastore-rxjava2:1.0.0"
+    implementation "androidx.datastore:datastore-rxjava3:1.0.0"
+
+    implementation "androidx.documentfile:documentfile:1.1.0-alpha01"
+    implementation "androidx.draganddrop:draganddrop:1.0.0"
+    implementation "androidx.drawerlayout:drawerlayout:1.2.0"
+
+    // dynamicanimation
+    implementation "androidx.dynamicanimation:dynamicanimation:1.1.0-alpha03"
+    // implementation "androidx.dynamicanimation:dynamicanimation-ktx:1.1.0-alpha03"
+
+    // emoji2
+    implementation "androidx.emoji2:emoji2:$emoji2_version"
+    implementation "androidx.emoji2:emoji2-views:$emoji2_version"
+    implementation "androidx.emoji2:emoji2-views-helper:$emoji2_version"
+
+    // enterprise
+    implementation "androidx.enterprise:enterprise-feedback:$enterprise_version"
+    implementation "androidx.enterprise:enterprise-feedback-testing:$enterprise_version"
+
+    implementation "androidx.exifinterface:exifinterface:1.3.6"
+
+    // fragment
+    implementation "androidx.fragment:fragment:$fragment_version"
+    // implementation "androidx.fragment:fragment-ktx:$fragment_version"
+    debugImplementation "androidx.fragment:fragment-testing:$fragment_version"
+
+    // games
+    implementation "androidx.games:games-frame-pacing:1.10.0"
+    // implementation "androidx.games:games-performance-tuner:"
+    implementation "androidx.games:games-activity:1.2.2"
+    // implementation "androidx.games:games-controller:"
+
+    // glance
+    implementation "androidx.glance:glance-appwidget:1.0.0-alpha05"
+    implementation "androidx.glance:glance-wear-tiles:1.0.0-alpha05"
+
+    implementation "androidx.graphics:graphics-core:1.0.0-alpha02"
+    implementation "androidx.gridlayout:gridlayout:1.0.0"
+    implementation "androidx.health:health-services-client:1.0.0-beta02"
+    implementation "androidx.health.connect:connect-client:1.0.0-alpha11"
+    implementation "androidx.heifwriter:heifwriter:1.1.0-alpha01"
+    implementation "androidx.input:input-motionprediction:1.0.0-alpha02"
+    implementation "androidx.interpolator:interpolator:1.0.0"
+    implementation "androidx.javascriptengine:javascriptengine:1.0.0-alpha04"
+
+    implementation "androidx.leanback:leanback:$leanback_version"
+    implementation "androidx.leanback:leanback-preference:$leanback_version"
+    implementation "androidx.leanback:leanback-paging:1.1.0-alpha09"
+    implementation "androidx.leanback:leanback-tab:1.1.0-beta01"
+
+    implementation "androidx.lifecycle:lifecycle-viewmodel:$lifecycle_version"
+    implementation "androidx.lifecycle:lifecycle-livedata:$lifecycle_version"
+    implementation "androidx.lifecycle:lifecycle-runtime:$lifecycle_version"
+    implementation "androidx.lifecycle:lifecycle-viewmodel-savedstate:$lifecycle_version"
+    // annotationProcessor "androidx.lifecycle:lifecycle-compiler:$lifecycle_version"
+    implementation "androidx.lifecycle:lifecycle-common-java8:$lifecycle_version"
+    implementation "androidx.lifecycle:lifecycle-service:$lifecycle_version"
+    implementation "androidx.lifecycle:lifecycle-process:$lifecycle_version"
+    implementation "androidx.lifecycle:lifecycle-reactivestreams:$lifecycle_version"
+    testImplementation "androidx.arch.core:core-testing:$arch_version"
+    // testImplementation "androidx.lifecycle:lifecycle-runtime-testing:$lifecycle_version"
+    implementation "androidx.loader:loader:1.1.0"
+
     // media
-    //def media3_version = "1.0.0-rc01"
-    /* api "androidx.media3:media3-exoplayer:1.0.0-rc01"
-    api "androidx.media3:media3-exoplayer-dash:1.0.0-rc01"
-    api "androidx.media3:media3-exoplayer-hls:1.0.0-rc01"
-    api "androidx.media3:media3-exoplayer-rtsp:1.0.0-rc01"
-    api "androidx.media3:media3-exoplayer-ima:1.0.0-rc01"
-    api "androidx.media3:media3-datasource-cronet:1.0.0-rc01"
-    api "androidx.media3:media3-datasource-okhttp:1.0.0-rc01"
-    api "androidx.media3:media3-datasource-rtmp:1.0.0-rc01"
-    api "androidx.media3:media3-ui:1.0.0-rc01"
-    api "androidx.media3:media3-ui-leanback:1.0.0-rc01"
-    api "androidx.media3:media3-session:1.0.0-rc01"
-    api "androidx.media3:media3-extractor:1.0.0-rc01"
-    api "androidx.media3:media3-cast:1.0.0-rc01"
-    api "androidx.media3:media3-exoplayer-workmanager:1.0.0-rc01"
-    api "androidx.media3:media3-transformer:1.0.0-rc01"
-    api "androidx.media3:media3-test-utils:1.0.0-rc01"
-    api "androidx.media3:media3-test-utils-robolectric:1.0.0-rc01"
-    api "androidx.media3:media3-database:1.0.0-rc01"
-    api "androidx.media3:media3-decoder:1.0.0-rc01"
-    api "androidx.media3:media3-datasource:1.0.0-rc01"
-    api "androidx.media3:media3-common:1.0.0-rc01" */
-    
-    api "androidx.mediarouter:mediarouter:1.3.1"
-    api "androidx.metrics:metrics-performance:1.0.0-alpha03"
-    
-    // navigation
-    //def nav_version = "2.5.3"
-    api "androidx.navigation:navigation-fragment:2.5.3"
-    api "androidx.navigation:navigation-ui:2.5.3"
-    api "androidx.navigation:navigation-dynamic-features-fragment:2.5.3"
+    implementation "androidx.media:media:1.6.0"
+    implementation "androidx.media2:media2-session:$media2_version"
+    implementation "androidx.media2:media2-widget:$media2_version"
+    implementation "androidx.media2:media2-player:$media2_version"
+    implementation "androidx.media3:media3-exoplayer:$media3_version"
+    implementation "androidx.media3:media3-exoplayer-dash:$media3_version"
+    implementation "androidx.media3:media3-exoplayer-hls:$media3_version"
+    implementation "androidx.media3:media3-exoplayer-rtsp:$media3_version"
+    implementation "androidx.media3:media3-exoplayer-ima:$media3_version"
+    implementation "androidx.media3:media3-datasource-cronet:$media3_version"
+    implementation "androidx.media3:media3-datasource-okhttp:$media3_version"
+    implementation "androidx.media3:media3-datasource-rtmp:$media3_version"
+    implementation "androidx.media3:media3-ui:$media3_version"
+    implementation "androidx.media3:media3-ui-leanback:$media3_version"
+    implementation "androidx.media3:media3-session:$media3_version"
+    implementation "androidx.media3:media3-extractor:$media3_version"
+    implementation "androidx.media3:media3-cast:$media3_version"
+    implementation "androidx.media3:media3-exoplayer-workmanager:$media3_version"
+    implementation "androidx.media3:media3-transformer:$media3_version"
+    implementation "androidx.media3:media3-test-utils:$media3_version"
+    implementation "androidx.media3:media3-test-utils-robolectric:$media3_version"
+    implementation "androidx.media3:media3-database:$media3_version"
+    implementation "androidx.media3:media3-decoder:$media3_version"
+    implementation "androidx.media3:media3-datasource:$media3_version"
+    implementation "androidx.media3:media3-common:$media3_version"
 
-    // api "androidx.paging:paging-runtime:3.2.0-alpha04" // kt版本不兼容
-    
-    api "androidx.preference:preference:1.2.0"
-    api "androidx.print:print:1.1.0-beta01"
-    
+    implementation "androidx.mediarouter:mediarouter:1.6.0-alpha01"
+    implementation "androidx.metrics:metrics-performance:1.0.0-alpha03"
+
+
+    implementation "androidx.navigation:navigation-fragment:$nav_version"
+    implementation "androidx.navigation:navigation-ui:$nav_version"
+    implementation "androidx.navigation:navigation-fragment-ktx:$nav_version"
+    implementation "androidx.navigation:navigation-ui-ktx:$nav_version"
+    implementation "androidx.navigation:navigation-dynamic-features-fragment:$nav_version"
+    androidTestImplementation "androidx.navigation:navigation-testing:$nav_version"
+    // implementation "androidx.navigation:navigation-compose:$nav_version"
+
+    // paging
+    implementation "androidx.paging:paging-runtime:$paging_version"
+    testImplementation "androidx.paging:paging-common:$paging_version"
+    implementation "androidx.paging:paging-rxjava2:$paging_version"
+    implementation "androidx.paging:paging-rxjava3:$paging_version"
+    implementation "androidx.paging:paging-guava:$paging_version"
+    // implementation "androidx.paging:paging-compose:1.0.0-alpha18"
+
+    implementation "androidx.percentlayout:percentlayout:1.0.0"
+    implementation "androidx.preference:preference:$preference_version"
+    // implementation "androidx.preference:preference-ktx:$preference_version"
+
+    implementation "androidx.print:print:1.1.0-beta01"
+
+    // privacysandbox
+    implementation "androidx.privacysandbox.ads:ads-adservices:1.0.0-beta01"
+    implementation "androidx.privacysandbox.ads:ads-adservices-java:1.0.0-beta01"
+    implementation "androidx.privacysandbox.sdkruntime:sdkruntime-client:1.0.0-alpha01"
+    implementation "androidx.privacysandbox.sdkruntime:sdkruntime-core:1.0.0-alpha01"
+    implementation "androidx.privacysandbox.tools:tools:1.0.0-alpha02"
+    // implementation "androidx.privacysandbox.tools:tools-complications-data-source:1.0.0-alpha02"
+    // implementation "androidx.privacysandbox.tools:tools-complications-data-source-ktx:1.0.0-alpha02"
+    // implementation "androidx.privacysandbox.tools:tools-editor:1.0.0-alpha02"
+    // implementation "androidx.privacysandbox.tools:tools-complications-rendering:1.0.0-alpha02"
+
+    implementation "androidx.profileinstaller:profileinstaller:1.3.0"
+    implementation "androidx.recommendation:recommendation:1.0.0"
+
     // recyclerview
-    api "androidx.recyclerview:recyclerview:1.3.0-rc01"
-    api "androidx.recyclerview:recyclerview-selection:1.2.0-alpha01"
-    
-    api "androidx.savedstate:savedstate:1.2.0"
-    api "androidx.sharetarget:sharetarget:1.2.0"
-    api "androidx.slidingpanelayout:slidingpanelayout:1.2.0"
-    api "androidx.swiperefreshlayout:swiperefreshlayout:1.1.0"
-    api "androidx.textclassifier:textclassifier:1.0.0-alpha04"
-    api "androidx.transition:transition:1.4.1"
-    
-    // tv
-    // kt不兼容
-    // api "androidx.tv:tv-foundation:1.0.0-alpha04"
-    // api "androidx.tv:tv-material:1.0.0-alpha04"
-    
-    // vectordrawable
-    api "androidx.vectordrawable:vectordrawable:1.1.0"
-    api "androidx.vectordrawable:vectordrawable-animated:1.1.0"
-    api "androidx.vectordrawable:vectordrawable-seekable:1.0.0-beta01"
-    
-    api "androidx.viewpager2:viewpager2:1.0.0"
-    api "androidx.webkit:webkit:1.6.0"
-    // api "androidx.window.extensions.core:core:1.0.0-alpha01" // kt不兼容
-    api "androidx.work:work-runtime:2.8.0"
+    implementation "androidx.recyclerview:recyclerview:1.3.0"
+    implementation "androidx.recyclerview:recyclerview-selection:1.2.0-alpha01"
 
+    implementation "androidx.resourceinspection:resourceinspection-annotation:1.0.1"
+
+    // room
+    implementation "androidx.room:room-runtime:$room_version"
+    annotationProcessor "androidx.room:room-compiler:$room_version"
+    // kapt "androidx.room:room-compiler:$room_version"
+    // ksp "androidx.room:room-compiler:$room_version"
+    implementation "androidx.room:room-rxjava2:$room_version"
+    implementation "androidx.room:room-rxjava3:$room_version"
+    implementation "androidx.room:room-guava:$room_version"
+    testImplementation "androidx.room:room-testing:$room_version"
+    implementation "androidx.room:room-paging:$room_version"
+
+    // savedstate
+    implementation "androidx.savedstate:savedstate:1.2.1"
+    // implementation "androidx.savedstate:savedstate-ktx:1.2.1"
+
+    // security
+    implementation "androidx.security:security-crypto:1.0.0"
+    implementation "androidx.security:security-identity-credential:1.0.0-alpha03"
+    implementation "androidx.security:security-app-authenticator:1.0.0-alpha02"
+    androidTestImplementation "androidx.security:security-app-authenticator:1.0.0-alpha02"
+
+    implementation "androidx.sharetarget:sharetarget:1.2.0"
+    implementation "androidx.slidingpanelayout:slidingpanelayout:1.2.0"
+
+    // sqlite
+    implementation "androidx.sqlite:sqlite:$sqlite_version"
+    implementation "androidx.sqlite:sqlite-ktx:$sqlite_version"
+    implementation "androidx.sqlite:sqlite-framework:$sqlite_version"
+
+    implementation "androidx.swiperefreshlayout:swiperefreshlayout:1.2.0-alpha01"
+
+    // test
+    androidTestImplementation "androidx.test:core:1.5.0"
+    // androidTestImplementation "androidx.test:core-ktx:1.5.0"
+    androidTestImplementation "androidx.test:espresso:espresso-core:3.5.1"
+    androidTestImplementation "androidx.test.ext:junit:1.1.5"
+    // androidTestImplementation "androidx.test.ext:junit-ktx:1.1.5"
+    androidTestImplementation "androidx.test.ext:truth:1.5.0"
+    androidTestImplementation "androidx.test:runner:1.5.2"
+    androidTestUtil "androidx.test:orchestrator:1.4.2"
+    androidTestImplementation "androidx.test.uiautomator:uiautomator:2.3.0-alpha02"
+
+    implementation "androidx.textclassifier:textclassifier:1.0.0-alpha04"
+
+    // transition
+    implementation "androidx.transition:transition:1.4.1"
+    // implementation "androidx.transition:transition-ktx:1.4.1"
+
+    implementation "androidx.tv:tv-foundation:1.0.0-alpha04"
+    implementation "androidx.tv:tv-material:1.0.0-alpha04"
+
+    // vectordrawable
+    implementation "androidx.vectordrawable:vectordrawable:1.2.0-beta01"
+    implementation "androidx.vectordrawable:vectordrawable-animated:1.1.0"
+    implementation "androidx.vectordrawable:vectordrawable-seekable:1.0.0-beta01"
+
+    implementation "androidx.viewpager2:viewpager2:1.1.0-beta01"
+
+    // wear
+    implementation "androidx.wear:wear:1.2.0"
+    implementation "androidx.wear:wear-input:1.1.0"
+    implementation "androidx.wear:wear-input-testing:1.1.0"
+    implementation "androidx.wear:wear-ongoing:1.0.0"
+    implementation "androidx.wear:wear-phone-interactions:1.0.1"
+    implementation "androidx.wear:wear-remote-interactions:1.0.0"
+    implementation "androidx.wear.protolayout:protolayout-proto:1.0.0-alpha04"
+    implementation "androidx.wear.protolayout:protolayout-expression:1.0.0-alpha04"
+    implementation "androidx.wear.watchface:watchface:1.1.1"
+    implementation "androidx.wear.watchface:watchface-complications-data-source:1.1.1"
+    // implementation "androidx.wear.watchface:watchface-complications-data-source-ktx:1.1.1"
+    implementation "androidx.wear.watchface:watchface-editor:1.1.1"
+    implementation "androidx.wear.watchface:watchface-complications-rendering:1.1.1"
+
+    implementation "androidx.webkit:webkit:1.6.0"
+
+    implementation "androidx.window:window:1.0.0"
+    implementation "androidx.window:window-java:1.0.0"
+    implementation "androidx.window:window-rxjava2:1.0.0"
+    implementation "androidx.window:window-rxjava3:1.0.0"
+    implementation "androidx.window:window-testing:1.0.0"
+
+    // work
+    implementation "androidx.work:work-runtime:$work_version"
+    // implementation "androidx.work:work-runtime-ktx:$work_version"
+    implementation "androidx.work:work-rxjava2:$work_version"
+    implementation "androidx.work:work-gcm:$work_version"
+    androidTestImplementation "androidx.work:work-testing:$work_version"
+    implementation "androidx.work:work-multiprocess:$work_version"
+
+    api 'com.google.android.material:material:1.10.0-alpha01'
+
+    implementation 'com.google.guava:guava:31.1-android'
+
+    // https://github.com/zhanghai/AndroidFastScroll
+    implementation 'me.zhanghai.android.fastscroll:library:1.2.0'
+
+    // https://github.com/PureWriter/FullDraggableDrawer
+    implementation 'com.drakeet.drawer:drawer:1.0.3'
 }
 

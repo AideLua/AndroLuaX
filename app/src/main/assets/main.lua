@@ -29,7 +29,7 @@ function onVersionChanged(n, o)
   local dlg = MaterialAlertDialogBuilder(activity)
   local title = "更新" .. o .. ">" .. n
   local msg = [[
-    2.2(5.0.18)(Material3)
+    3.0(5.0.18)(Material3)
     添加很多支持库
     更新 AndroidX 与 Material
     修复华为平行视界无法使用的问题

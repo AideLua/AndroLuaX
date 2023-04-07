@@ -1,6 +1,6 @@
 ## 更新日志
 
-### 2.2(5.0.18)(Material3)
+### 3.0(5.0.18)(Material3)
 
 1. 添加很多支持库
 2. 更新 AndroidX 与 Material

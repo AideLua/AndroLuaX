@@ -23,8 +23,8 @@ android {
         minSdkVersion 21
         // noinspection ExpiredTargetSdkVersion
         targetSdkVersion 29//新版本不会自动授予完整的存储权限
-        versionCode 3099
-        versionName "3.0(5.0.18)(Material3)"
+        versionCode 3101
+        versionName "3.1(5.0.18)(Material3)(alpha)"
         signingConfig signingConfigs.release
         multiDexEnabled true
     }

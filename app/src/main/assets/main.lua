@@ -17,6 +17,13 @@ import "bin"
 import "autotheme"
 import "DialogHelper"
 
+--首先添加一下，避免后期重复添加
+local classes = require "javaapi.android"
+local androidXAndMaterialClasses=require "javaapi.androidXAndMaterialClasses"
+local classesLength=#classes
+for key,value in ipairs(androidXAndMaterialClasses) do
+  classes[key+classesLength]=value
+end
 activity.setTitle('AndroLua+')
 
 activity.setTheme(autotheme())
@@ -27,8 +34,12 @@ require "layout"
 function onVersionChanged(n, o)
 
   local dlg = MaterialAlertDialogBuilder(activity)
-  local title = "更新" .. o .. ">" .. n
+  local title = "更新 " .. o .. " > " .. n
   local msg = [[
+    3.1(5.0.18)(Material3)
+    修复跳转列表未显示的问题
+    修复导包检测列表重复的问题
+
     3.0(5.0.18)(Material3)
     添加很多支持库
     更新 AndroidX 与 Material
@@ -1494,8 +1505,9 @@ func.navi = function()
     table.insert(indexs, i)
     fs[s] = i
   end
-  local adapter = ArrayAdapter(activity, android.R.layout.simple_list_item_1, String(fs))
-  navi_list.setAdapter(adapter)
+  navi_dlg.setItems(String(fs))
+  --local adapter = ArrayAdapter(activity, android.R.layout.simple_list_item_1, )
+  --navi_list.setAdapter(adapter)
   navi_dlg.show()
 end
 
@@ -1715,11 +1727,7 @@ function onActivityResult(req, res, intent)
       editor.gotoLine(tonumber(line))
     end
     local classes = require "javaapi.android"
-    local androidXAndMaterialClasses=require "javaapi.androidXAndMaterialClasses"
-    local classesLength=#classes
-    for key,value in ipairs(androidXAndMaterialClasses) do
-      classes[key+classesLength]=value
-    end
+
     local c = data:match("a nil value %(global '(%w+)'%)")
     if c then
       local cls = {}
@@ -1765,12 +1773,12 @@ function create_navi_dlg()
   end
   navi_dlg = LuaMaterialDialog(activity)
   navi_dlg.setTitle("导航")
-  navi_list = ListView(activity)
+  navi_list=navi_dlg.ListView
   navi_list.onItemClick = function(parent, v, pos, id)
     editor.setSelection(indexs[pos + 1])
     navi_dlg.hide()
   end
-  navi_dlg.setContentView(navi_list)
+  --navi_dlg.setView(navi_list)
 end
 
 function create_imports_dlg()
@@ -2073,11 +2081,7 @@ editor.addPackage("activity",buf)
 
 function fix(c)
   local classes = require "javaapi.android"
-  local androidXAndMaterialClasses=require "javaapi.androidXAndMaterialClasses"
-  local classesLength=#classes
-  for key,value in ipairs(androidXAndMaterialClasses) do
-    classes[key+classesLength]=value
-  end
+
   if c then
     local cls = {}
     c = "%." .. c .. "$"

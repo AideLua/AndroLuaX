@@ -414,9 +414,10 @@ func["子控件"]=function()
 end
 
 --添加视图对话框
-add_dlg=MaterialAlertDialogBuilder(activity)
+add_dlg=LuaMaterialDialog(activity)
 add_dlg.Title="添加"
-wdt_list=ListView(activity)
+wdt_list=add_dlg.ListView
+--wdt_list=ListView(activity)
 
 ns={
   "Widget (小部件)","Check view (检查视图)","Adapter view (适配器视图)",
@@ -450,7 +451,7 @@ end
 el=ExpandableListView(activity)
 el.setAdapter(mAdapter)
 add_dlg.setView(el)
-add_dlg=add_dlg.create()
+--add_dlg=add_dlg.create()
 
 el.onChildClick=function(l,v,g,c)
   local w={_G[wds[g+1][c+1]]}

@@ -5,6 +5,7 @@ package com.androlua;
 import androidx.appcompat.app.AlertControllerBridge;
 import androidx.appcompat.app.AlertDialog;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.res.TypedArray;
@@ -43,7 +44,6 @@ public class LuaDialog extends AlertDialog implements DialogInterface.OnClickLis
     private OnClickListener mOnClickListener;
 
     private final int mListItemLayout;
-    private final LayoutInflater mInflater;
     private final AlertControllerBridge.RecycleListViewBridge recycleListViewBridge;
     private boolean hasButtons;
     private boolean hasTitle;
@@ -53,6 +53,8 @@ public class LuaDialog extends AlertDialog implements DialogInterface.OnClickLis
         this(context, 0);
     }
 
+
+    @SuppressLint("PrivateResource")
     public LuaDialog(Context context, int theme) {
         super(context, theme);
         mContext = context;
@@ -62,8 +64,8 @@ public class LuaDialog extends AlertDialog implements DialogInterface.OnClickLis
         int listLayout = a.getResourceId(androidx.appcompat.R.styleable.AlertDialog_listLayout, 0);
         mListItemLayout = a.getResourceId(androidx.appcompat.R.styleable.AlertDialog_listItemLayout, 0);
         a.recycle();
-        mInflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-        mListView = (ListView) mInflater.inflate(listLayout, null);
+        LayoutInflater inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+        mListView = (ListView) inflater.inflate(listLayout, null);
         recycleListViewBridge = new AlertControllerBridge.RecycleListViewBridge(mListView);
     }
 
@@ -76,32 +78,32 @@ public class LuaDialog extends AlertDialog implements DialogInterface.OnClickLis
     }
 
     public void setButton2(CharSequence text) {
-       setNegButton(text);
+        setNegButton(text);
 
     }
 
     public void setButton3(CharSequence text) {
-       setNeuButton(text);
+        setNeuButton(text);
     }
 
     public void setPosButton(CharSequence text) {
-        setPositiveButton(text,this);
+        setPositiveButton(text, this);
     }
 
     public void setNegButton(CharSequence text) {
-        setNegativeButton(text,this);
+        setNegativeButton(text, this);
     }
 
     public void setNeuButton(CharSequence text) {
-        setNeutralButton(text,this);
+        setNeutralButton(text, this);
     }
 
     public void setOkButton(CharSequence text) {
-        setPositiveButton(text,this);
+        setPositiveButton(text, this);
     }
 
     public void setCancelButton(CharSequence text) {
-        setNegativeButton(text,this);
+        setNegativeButton(text, this);
     }
 
     public void setOnClickListener(LuaDialog.OnClickListener listener) {
@@ -110,20 +112,20 @@ public class LuaDialog extends AlertDialog implements DialogInterface.OnClickLis
 
     public void setPositiveButton(CharSequence text, DialogInterface.OnClickListener listener) {
         setButton(DialogInterface.BUTTON_POSITIVE, text, listener);
-        hasButtons=true;
-        recycleListViewBridge.setHasDecor(hasTitle,hasButtons);
+        hasButtons = true;
+        recycleListViewBridge.setHasDecor(hasTitle, true);
     }
 
     public void setNegativeButton(CharSequence text, DialogInterface.OnClickListener listener) {
         setButton(DialogInterface.BUTTON_NEGATIVE, text, listener);
-        hasButtons=true;
-        recycleListViewBridge.setHasDecor(hasTitle,hasButtons);
+        hasButtons = true;
+        recycleListViewBridge.setHasDecor(hasTitle, true);
     }
 
     public void setNeutralButton(CharSequence text, DialogInterface.OnClickListener listener) {
         setButton(DialogInterface.BUTTON_NEUTRAL, text, listener);
-        hasButtons=true;
-        recycleListViewBridge.setHasDecor(hasTitle,hasButtons);
+        hasButtons = true;
+        recycleListViewBridge.setHasDecor(hasTitle, true);
     }
 
     public String getTitle() {
@@ -135,8 +137,8 @@ public class LuaDialog extends AlertDialog implements DialogInterface.OnClickLis
         // TODO: Implement this method
         mTitle = title.toString();
         super.setTitle(title);
-        hasTitle=true;
-        recycleListViewBridge.setHasDecor(hasTitle,hasButtons);
+        hasTitle = true;
+        recycleListViewBridge.setHasDecor(true, hasButtons);
     }
 
     public String getMessage() {
@@ -168,8 +170,8 @@ public class LuaDialog extends AlertDialog implements DialogInterface.OnClickLis
     }
 
     public void setItems(String[] items) {
-        ArrayList<String> alist = new ArrayList<String>(Arrays.asList(items));
-        ArrayListAdapter<String> adp = new ArrayListAdapter<String>(mContext, mListItemLayout, alist);
+        ArrayList<String> alist = new ArrayList<>(Arrays.asList(items));
+        ArrayListAdapter<String> adp = new ArrayListAdapter<>(mContext, mListItemLayout, alist);
         setAdapter(adp);
         mListView.setChoiceMode(ListView.CHOICE_MODE_NONE);
     }
@@ -185,8 +187,8 @@ public class LuaDialog extends AlertDialog implements DialogInterface.OnClickLis
     }
 
     public void setSingleChoiceItems(CharSequence[] items, int checkedItem) {
-        ArrayList<CharSequence> alist = new ArrayList<CharSequence>(Arrays.asList(items));
-        ArrayListAdapter<CharSequence> adp = new ArrayListAdapter<CharSequence>(mContext, android.R.layout.simple_list_item_single_choice, alist);
+        ArrayList<CharSequence> alist = new ArrayList<>(Arrays.asList(items));
+        ArrayListAdapter<CharSequence> adp = new ArrayListAdapter<>(mContext, android.R.layout.simple_list_item_single_choice, alist);
         setAdapter(adp);
         mListView.setChoiceMode(ListView.CHOICE_MODE_SINGLE);
         mListView.setItemChecked(checkedItem, true);
@@ -197,8 +199,8 @@ public class LuaDialog extends AlertDialog implements DialogInterface.OnClickLis
     }
 
     public void setMultiChoiceItems(CharSequence[] items, int[] checkedItems) {
-        ArrayList<CharSequence> alist = new ArrayList<CharSequence>(Arrays.asList(items));
-        ArrayListAdapter<CharSequence> adp = new ArrayListAdapter<CharSequence>(mContext, android.R.layout.simple_list_item_multiple_choice, alist);
+        ArrayList<CharSequence> alist = new ArrayList<>(Arrays.asList(items));
+        ArrayListAdapter<CharSequence> adp = new ArrayListAdapter<>(mContext, android.R.layout.simple_list_item_multiple_choice, alist);
         setAdapter(adp);
         mListView.setChoiceMode(ListView.CHOICE_MODE_MULTIPLE);
         for (int i : checkedItems)

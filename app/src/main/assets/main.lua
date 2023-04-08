@@ -38,6 +38,9 @@ function onVersionChanged(n, o)
   local dlg = MaterialAlertDialogBuilder(activity)
   local title = "更新 " .. o .. " > " .. n
   local msg = [[
+    3.2(5.0.18)(Material3)
+    紧急更新：关闭资源优化
+
     3.1(5.0.18)(Material3)
     修复跳转列表未显示的问题
     修复导包检测列表重复的问题

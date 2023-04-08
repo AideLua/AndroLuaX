@@ -99,28 +99,36 @@ layout={
       orientation=1,
       layout_width="fill",
       padding="10dp",
+      paddingLeft=res.dimension.attr.dialogPreferredPadding;
+      paddingRight=res.dimension.attr.dialogPreferredPadding;
       {
-        TextView,
-        text="程序名称"
-      },
+        TextInputLayout;
+        hint="程序名称";
+        layout_width="fill";
+        layout_marginTop="8dp";
+        {
+          TextInputEditText;
+          layout_width="fill";
+          layout_height="fill";
+          id="project_appName";
+          singleLine=true;
+          text="demo",
+        };
+      };
       {
-        EditText,
-        id="project_appName",
-        text="demo",
-        layout_width="fill",
-        singleLine=true,
-      },
-      {
-        TextView,
-        text="包名称"
-      },
-      {
-        EditText,
-        id="project_packageName",
-        text="com.androlua.demo",
-        layout_width="fill",
-        singleLine=true,
-      },
+        TextInputLayout;
+        hint="包名称";
+        layout_width="fill";
+        layout_marginTop="8dp";
+        {
+          TextInputEditText;
+          layout_width="fill";
+          layout_height="fill";
+          id="project_packageName";
+          singleLine=true;
+          text="com.androlua.demo",
+        };
+      };
     }
   },
   open2={

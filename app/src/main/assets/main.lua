@@ -13,6 +13,8 @@ import "android.graphics.drawable.*"
 import "androidx.appcompat.app.AppCompatDialog"
 import "com.google.android.material.dialog.MaterialAlertDialogBuilder"
 import "com.jesse205.androluax.LuaMaterialDialog"
+import "com.google.android.material.textfield.TextInputEditText"
+import "com.google.android.material.textfield.TextInputLayout"
 import "bin"
 import "autotheme"
 import "DialogHelper"
@@ -1912,8 +1914,18 @@ function create_create_dlg()
   create_dlg = MaterialAlertDialogBuilder(activity)
   create_dlg.setMessage(luadir)
   create_dlg.setTitle("新建")
-  create_e = EditText(activity)
-  create_dlg.setView(create_e)
+
+  --create_e = EditText(activity)
+  create_dlg.setView(loadlayout({
+    LinearLayout;
+    {
+      EditText;
+      id="create_e";
+      layout_width="fill";
+      layout_marginLeft=res.dimension.attr.dialogPreferredPadding;
+      layout_marginRight=res.dimension.attr.dialogPreferredPadding;
+    }
+  }))
   create_dlg.setPositiveButton(".lua", { onClick = create_lua })
   create_dlg.setNegativeButton("dir", { onClick = create_dir })
   create_dlg.setNeutralButton(".aly", { onClick = create_aly })

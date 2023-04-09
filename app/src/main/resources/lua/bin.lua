@@ -313,6 +313,7 @@ local function binapk(luapath, apkpath)
                 local req = {
                     [activity.getPackageName()] = packagename,
                     [activity.getPackageName()..".androidx-startup"] = packagename..".androidx-startup",
+                    [activity.getPackageName()..".DYNAMIC_RECEIVER_NOT_EXPORTED_PERMISSION"] = packagename..".DYNAMIC_RECEIVER_NOT_EXPORTED_PERMISSION",
                     [info.nonLocalizedLabel] = appname,
                     [ver] = appver,
                     [".*\\\\.lua"] = "",

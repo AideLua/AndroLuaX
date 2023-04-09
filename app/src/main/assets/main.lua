@@ -38,6 +38,9 @@ function onVersionChanged(n, o)
   local dlg = MaterialAlertDialogBuilder(activity)
   local title = "更新 " .. o .. " > " .. n
   local msg = [[
+    3.3(5.0.18)(Material3)
+    修复打包之后安装时，编辑器与成品它俩必须没一个
+
     3.2(5.0.18)(Material3)
     紧急更新：关闭资源优化
 

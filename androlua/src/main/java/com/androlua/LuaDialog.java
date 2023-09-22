@@ -2,6 +2,7 @@ package com.androlua;
 
 //import android.app.AlertDialog;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertControllerBridge;
 import androidx.appcompat.app.AlertDialog;
 
@@ -133,7 +134,7 @@ public class LuaDialog extends AlertDialog implements DialogInterface.OnClickLis
     }
 
     @Override
-    public void setTitle(CharSequence title) {
+    public void setTitle(@NonNull CharSequence title) {
         // TODO: Implement this method
         mTitle = title.toString();
         super.setTitle(title);
@@ -146,7 +147,7 @@ public class LuaDialog extends AlertDialog implements DialogInterface.OnClickLis
     }
 
     @Override
-    public void setMessage(CharSequence message) {
+    public void setMessage(@NonNull CharSequence message) {
         // TODO: Implement this method
         mMessage = message.toString();
         super.setMessage(message);

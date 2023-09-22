@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <!-- 背景变白，去除阴影 -->
-    <style name="Widget.AndroLuaX.Material3.Light.ActionBar" parent="Widget.Material3.Light.ActionBar.Solid">
+    <style name="Widget.AndroLuaX.Material3.ActionBar" parent="Widget.Material3.ActionBar.Solid">
         <item name="background">?colorSurface</item>
         <item name="backgroundStacked">?colorSurface</item>
         <item name="backgroundSplit">?colorSurface</item>
         <item name="elevation">0dp</item>
     </style>
-    <style name="Widget.AndroLuaX.ActionMode" parent="Widget.Material3.ActionMode">
+    <style name="Widget.AndroLuaX.Material3.ActionMode" parent="Widget.Material3.ActionMode">
         <item name="background">?colorSurface</item>
     </style>
 

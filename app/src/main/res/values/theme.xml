@@ -7,13 +7,13 @@
     <style name="Platform.Theme.AndroLuaX.Material3" parent="Platform.V21.Theme.AndroLuaX.Material3" />
 
     <style name="Base.Theme.AndroLuaX.Material3" parent="Platform.Theme.AndroLuaX.Material3">
-        <item name="android:colorBackground">?colorSurface</item>
         <item name="colorAccent">?colorPrimary</item>
-        <item name="floatingActionButtonStyle">?floatingActionButtonSecondaryStyle</item>
-        <item name="actionBarStyle">@style/Widget.AndroLuaX.Material3.Light.ActionBar</item>
+        <item name="actionBarStyle">@style/Widget.AndroLuaX.Material3.ActionBar</item>
         <item name="actionBarTheme">@style/ThemeOverlay.AndroLuaX.Material3.ActionBar</item>
-        <item name="actionModeStyle">@style/Widget.AndroLuaX.ActionMode</item>
+        <item name="actionModeStyle">@style/Widget.AndroLuaX.Material3.ActionMode</item>
         <item name="textInputStyle">?textInputOutlinedDenseStyle</item>
+        <!-- 防止溢出菜单串色 -->
+        <item name="actionBarPopupTheme">@null</item>
     </style>
     <style name="Theme.AndroLuaX.Material3" parent="Base.Theme.AndroLuaX.Material3" />
 
@@ -27,7 +27,6 @@
         <item name="colorPrimaryDark">?colorPrimary</item>
         <item name="colorPrimary">@color/color_primary</item>
         <item name="colorSurface">@color/color_surface</item>
-        <item name="android:windowLightStatusBar" tools:targetApi="m">false</item>
     </style>
 
     <style name="AppWelcome" parent="Theme.AndroLuaX.Material3.Welcome"/>

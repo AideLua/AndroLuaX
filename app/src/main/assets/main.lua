@@ -38,6 +38,11 @@ function onVersionChanged(n, o)
   local dlg = MaterialAlertDialogBuilder(activity)
   local title = "更新 " .. o .. " > " .. n
   local msg = [[
+    3.4(5.0.18)(Material3)
+    更新依赖（AndroLua+ 除外）
+    优化软件主题
+    移除游戏、TV、Kotlin、RxJava 等部分依赖
+
     3.3(5.0.18)(Material3)
     修复打包之后安装时，编辑器与成品它俩必须没一个
 

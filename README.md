@@ -22,9 +22,9 @@ AndroLuaX 还添加了 [AndroidFastScroll](https://github.com/zhanghai/AndroidFa
 ## 注意事项
 
 1. 因 AndroLua+ 本身的设计问题，**不建议**将 `targetSdk` 提升到 `29` 以上，否则存储权限没有被自动授予，造成用户体验不佳
-2. 已去除 `welcome.png` 启动图，应为有更好的方案替代
-3. AndroidX 尽可能添加所有 AndroidX 依赖，但会排除一些无用、会导致无法构建的依赖和与 Kotlin 与 RxJava 有关的所有依赖。
-4. 部分依赖无法在较低版本的 Android 上使用
+2. **已去除 `welcome.png` 启动图**，因为有更好的图标居中方案替代
+3. AndroidX 尽可能添加所有 AndroidX 依赖，但会排除一些无用的依赖和与 Kotlin 与 RxJava 有关的所有依赖。
+4. **部分依赖无法在较低版本的 Android 上使用**
 
 依赖兼容性表格：
 

@@ -1,36 +1,31 @@
-apply plugin: 'com.android.library'
+plugins {
+    id 'com.android.library'
+}
 
 android {
     namespace 'com.androlua'
-    compileSdkPreview 'UpsideDownCake'
-    buildToolsVersion '33.0.2'
+    compileSdk 34
 
     defaultConfig {
         minSdkVersion 14
         targetSdkVersion 33
-        versionCode 1199
-        versionName "5.0.18(1.1)(armeabi-v7a,arm64-v8a)"
     }
     buildTypes {
         release {
             minifyEnabled false
             shrinkResources false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
-            //noinspection ChromeOsAbiSupport
-            ndk {abiFilters 'armeabi-v7a', 'arm64-v8a'}
+            // noinspection ChromeOsAbiSupport
+            ndk { abiFilters 'armeabi-v7a', 'arm64-v8a' }
         }
         debug {
             minifyEnabled false
             shrinkResources false
-            //noinspection ChromeOsAbiSupport
-            ndk {abiFilters 'armeabi-v7a', 'arm64-v8a'}
+            // noinspection ChromeOsAbiSupport
+            ndk { abiFilters 'armeabi-v7a', 'arm64-v8a' }
         }
     }
-    sourceSets {
-        main {
-            //jniLibs.srcDirs = ['libs']
-        }
-    }
+
     lint {
         abortOnError false
         checkReleaseBuilds false
@@ -39,5 +34,6 @@ android {
 
 dependencies {
     api fileTree(dir: 'libs', include: ['*.jar'])
-    api 'androidx.appcompat:appcompat:1.7.0-alpha02'
+    api libs.androidx.appcompat.appcompat
+    api libs.google.material
 }

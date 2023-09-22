@@ -79,8 +79,6 @@ dependencies {
     // implementation "androidx.annotation:annotation-experimental:1.4.0-dev01"
 
     // appcompat
-    // implementation "androidx.appcompat:appcompat:$appcompat_version"
-    // implementation "androidx.appcompat:appcompat-resources:$appcompat_version"
     implementation libs.androidx.appcompat.appcompat
     implementation libs.androidx.appcompat.resources
 
@@ -91,11 +89,10 @@ dependencies {
     // annotationProcessor "androidx.appsearch:appsearch-compiler:$appsearch_version"
 
     implementation libs.androidx.asynclayoutinflater
-    // implementation "androidx.asynclayoutinflater:asynclayoutinflater:1.1.0-alpha01"
     implementation libs.androidx.autofill
 
     // biometric
-    // implementation "androidx.biometric:biometric:1.2.0-alpha05"
+    implementation libs.androidx.biometric
     // implementation "androidx.biometric:biometric-ktx:1.2.0-alpha05"
 
     implementation libs.androidx.browser
@@ -339,7 +336,7 @@ dependencies {
     // androidTestUtil "androidx.test:orchestrator:1.4.2"
     // androidTestImplementation "androidx.test.uiautomator:uiautomator:2.3.0-alpha02"
 
-    // implementation "androidx.textclassifier:textclassifier:1.0.0-alpha04"
+    implementation libs.androidx.textclassifier
 
     // transition
     implementation libs.androidx.transition

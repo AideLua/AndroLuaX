@@ -1,5 +1,5 @@
 [versions]
-androidx-activity = "1.8.0-alpha06"
+androidx-activity = "1.8.0-rc01"
 androidx-ads = "1.0.0-alpha05"
 androidx-annotation = "1.6.0"
 androidx-appcompat = "1.7.0-alpha02"
@@ -59,6 +59,8 @@ androidx-gridlayout = "1.0.0"
 androidx-graphics-core = "1.0.0-alpha03"
 androidx-exifinterface = "1.3.6"
 
+androidx-textclassifier = "1.0.0-alpha04"
+androidx-biometric = "1.2.0-alpha05"
 zhanghai-library = "1.3.0"
 google-material = "1.11.0-alpha03"
 google-guava = "31.1-android"
@@ -78,14 +80,15 @@ androidx-appsearch-platform-storage = { group = "androidx.appsearch", name = "ap
 
 androidx-asynclayoutinflater = { group = "androidx.asynclayoutinflater", name = "asynclayoutinflater", version.ref = "androidx-asynclayoutinflater" }
 
-androidx-connect-client = { module = "androidx.health.connect:connect-client", version.ref = "androidx-connect-client" }
-androidx-datastore-datastore = { module = "androidx.datastore:datastore", version.ref = "androidx-datastore" }
-androidx-datastore-preferences = { module = "androidx.datastore:datastore-preferences", version.ref = "androidx-datastore-preferences" }
-androidx-contentpager = { module = "androidx.contentpager:contentpager", version.ref = "androidx-contentpager" }
-androidx-coordinatorlayout = { module = "androidx.coordinatorlayout:coordinatorlayout", version.ref = "androidx-coordinatorlayout" }
-androidx-constraintlayout = { module = "androidx.constraintlayout:constraintlayout", version.ref = "androidx-constraintlayout" }
-androidx-concurrent-futures = { module = "androidx.concurrent:concurrent-futures", version.ref = "androidx-concurrent-futures" }
-androidx-collection = { module = "androidx.collection:collection", version.ref = "androidx-collection" }
+androidx-biometric = { group = "androidx.biometric", name = "biometric", version.ref = "androidx-biometric" }
+androidx-connect-client = { group = "androidx.health.connect", name = "connect-client", version.ref = "androidx-connect-client" }
+androidx-datastore-datastore = { group = "androidx.datastore", name = "datastore", version.ref = "androidx-datastore" }
+androidx-datastore-preferences = { group = "androidx.datastore", name = "datastore-preferences", version.ref = "androidx-datastore-preferences" }
+androidx-contentpager = { group = "androidx.contentpager", name = "contentpager", version.ref = "androidx-contentpager" }
+androidx-coordinatorlayout = { group = "androidx.coordinatorlayout", name = "coordinatorlayout", version.ref = "androidx-coordinatorlayout" }
+androidx-constraintlayout = { group = "androidx.constraintlayout", name = "constraintlayout", version.ref = "androidx-constraintlayout" }
+androidx-concurrent-futures = { group = "androidx.concurrent", name = "concurrent-futures", version.ref = "androidx-concurrent-futures" }
+androidx-collection = { group = "androidx.collection", name = "collection", version.ref = "androidx-collection" }
 androidx-emoji2-views-helper = { group = "androidx.emoji2", name = "emoji2-views-helper", version.ref = "androidx-emoji2" }
 androidx-emoji2-views-views = { group = "androidx.emoji2", name = "emoji2-views", version.ref = "androidx-emoji2" }
 androidx-emoji2-emoji2 = { group = "androidx.emoji2", name = "emoji2", version.ref = "androidx-emoji2" }
@@ -129,6 +132,7 @@ androidx-loader = { group = "androidx.loader", name = "loader", version.ref = "a
 androidx-gridlayout = { group = "androidx.gridlayout", name = "gridlayout", version.ref = "androidx-gridlayout" }
 androidx-graphics-core = { group = "androidx.graphics", name = "graphics-core", version.ref = "androidx-graphics-core" }
 
+androidx-textclassifier = { group = "androidx.textclassifier", name = "textclassifier", version.ref = "androidx-textclassifier" }
 androidx-work-multiprocess = { group = "androidx.work", name = "work-multiprocess", version.ref = "androidx-work" }
 androidx-work-runtime = { group = "androidx.work", name = "work-runtime", version.ref = "androidx-work" }
 androidx-window-java = { group = "androidx.window", name = "window-java", version.ref = "androidx-window-java" }
